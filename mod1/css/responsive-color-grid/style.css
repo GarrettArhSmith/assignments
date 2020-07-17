@@ -1,0 +1,26 @@
+
+body {margin: 0; overflow: hidden;}
+
+* {font-size: 0px;}
+
+div {
+    height: calc(100vh/9);
+    width: 100vw;
+    display: inline-block;
+    outline: 10px solid white;
+}
+
+.lightPink {background-color: #F5C6D6;}
+.brightPink {background-color: #EE2E84}
+.blue {background-color: #85CFD8}
+.green {background-color: #8DC63F}
+.orange {background-color: #E76E34}
+
+@media only screen and (min-width: 768px) {
+    div {height: 25vh;}
+    .lightPink {width: 100vw;}
+    .brightPink {width: 25vw;}
+    .blue {width: 50vw;}
+    .green {width: 75vw;}
+    .orange {width: 25vw;}
+}

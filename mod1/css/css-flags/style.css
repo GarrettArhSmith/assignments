@@ -1,0 +1,138 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    color: whitesmoke;
+    text-shadow: 2px 2px rgba(0,0,0,0.3);
+}
+
+a {
+    color: whitesmoke;
+    text-decoration: none;
+    transition: 0.4s;
+}
+a:hover {color: lightgray;}
+a:active {
+    color: #f2f2f2;
+    font-size: 1.2em;
+    transition: 0.1s;
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    padding-left: 3%;
+    z-index: 1;
+}
+nav ul {
+    float: right;
+    width: 35%;
+    margin-right: 10%;
+}
+nav ul li {
+    display: inline-block;
+    margin-left: 5%;
+}
+
+h1 {
+    position: absolute;
+    margin-left: 2%;
+}
+
+.white {background-color: whitesmoke; color: #2d2d2d;}
+.black {background-color: #0c0c0c;}
+.blue {background-color: blue;}
+.lightblue {background-color: cornflowerblue;}
+.red {background-color: red;}
+.orange {background-color: orangered;}
+.yellow {background-color: yellow;}
+.green {background-color: green;}
+
+.full {
+    width: 100%;
+    height: 100vh;
+    
+}
+
+.wid {
+    width: 100%;
+    height: calc(100vh/3);
+    overflow: auto;
+}
+
+.mg1 {
+    width: calc(100%/3);
+    height: 100vh;
+    float: left;
+    overflow: auto;
+}
+.mg2 {
+    width: 100%;
+    height: 50vh;
+}
+
+#switzerland {
+    position: relative;
+    overflow: hidden;
+}
+.ch {
+    text-shadow: none;
+    font-weight: 900;
+    font-size: 50em;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+#sweden {
+    position: relative;
+    overflow: hidden;
+}
+.se {
+    text-shadow: none;
+    font-weight: 1;
+    font-size: 14000%;
+    color: yellow;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+.se p {
+    transform: rotate(-90deg);
+}
+
+.gm {
+    height: calc(100vh/18*4);
+    border-top: calc(100vh/18) solid white;
+    border-bottom: calc(100vh/18) solid white;
+}
+
+.jp {
+    width: 30vw;
+    height: 30vw;
+    border-radius: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ne {
+    width: 15vw;
+    height: 15vw;
+    border-radius: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
