@@ -1,0 +1,12 @@
+* {margin: 15px;}
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #f9fcff;
+}
+
+form {
+    display: inline-block;
+    background-color: aliceblue;
+    padding: 50px;
+    outline: 10px solid #D7ECFF;

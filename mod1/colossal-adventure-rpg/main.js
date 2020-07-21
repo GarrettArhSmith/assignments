@@ -15,7 +15,7 @@ const customerTypes = [
     `Child Too Young To Be Here Alone`,
     `Weird Lady Still In Pajamas`
 ]
-let items = [
+const items = [
     `A Loaf of Bread`,
     `A Half Eaten Chocolate Bar`,
     `A Broken Jar of Pickles`,
@@ -35,6 +35,7 @@ Thank you, ${input(name)}! You'll be making $11.50/hour, and you'll hate every s
 Now get out there and ${chalk.italic(`"help"`)} some customers!`))
 
 let customer
+let rounds = 0
 let damageDealt = 0
 let damageTaken = 0
 let customerSatisfaction = 0
@@ -69,7 +70,7 @@ function attackSequence() {
         if (mentalHealth <= 0) {
             console.log(chalk.red.bold(`\nThat customer really took it out of you, ${input(name)}. You had a mental breakdown, and quit your job.`))
             const print = readline.question(`Type "print" to see your final stats: `)
-            if (print === "print") console.log(input(name), system(`\nMental Health: ${mentalHealth} \n${input(`Inventory:`)} \n`), inventory)
+            if (print === "print") console.log(input(`${name} - Lasted ${rounds} rounds.`), system(`\nMental Health: ${mentalHealth} \n${input(`Inventory:`)} \n`), inventory)
         }
         else readline.keyInPause(`\nContinue...`)
     } 
@@ -94,6 +95,7 @@ function attackSequence() {
 // WALK LOOP
 while (mentalHealth > 0) {
     readline.keyIn(prompt(`\n    Press ${chalk.italic.hex(`#ffbdfb`)(`W`)} to walk `), {limit: '$<w>'})
+    rounds++
 
     customerAppeared = Math.random() < 0.33
     if (customerAppeared) { // CUSTOMER ENCOUNTER
