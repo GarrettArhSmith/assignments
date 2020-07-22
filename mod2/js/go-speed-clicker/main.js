@@ -17,8 +17,7 @@ const countDown = setInterval(() => {
 
 let clicks
 window.addEventListener("click", e => {
-    if (e.target.type === "BUTTON") clearInterval(countDown)
-    else if (timeLeft > 0){
+    if (timeLeft > 0){
         clicks = Number(localStorage.getItem("clicks"))
         localStorage.setItem("clicks", ++clicks)
         tracker.textContent = localStorage.getItem("clicks")
