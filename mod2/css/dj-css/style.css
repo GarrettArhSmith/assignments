@@ -1,0 +1,75 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+    grid-auto-rows: 200px;
+    align-content: center;
+    min-height: 100vh;
+    grid-gap: 20px;
+    padding: 20px;
+    background-color: whitesmoke;
+}
+
+div {
+    border-radius: 15px;
+    transition: 0.2s;
+}
+
+
+/* ONE */
+div:nth-child(1) {
+    background-color: royalblue;
+}
+div:nth-child(1):hover {
+    transform: skew(15deg, 15deg);
+    background-color: lawngreen;
+}
+
+/* TWO */
+div:nth-child(2) {
+    background-color: salmon;
+}
+div:nth-child(2):hover {
+    transform: skew(-15deg, -15deg) scale(1.5);
+}
+
+/* THREE */
+div:nth-child(3) {
+    background-color: sandybrown;
+}
+div:nth-child(3):hover {
+    transform: rotate(90deg) scale(0.6);
+}
+
+/* FOUR */
+div:nth-child(4) {
+    background-color: slateblue;
+}
+div:nth-child(4):hover {
+    background-color: skyblue;
+    transform: translateY(30px);
+}
+
+/* FIVE */
+div:nth-child(5) {
+    background-color: seagreen;
+}
+div:nth-child(5):hover {
+    opacity: 0.4;
+    transform: translateY(-30px);
+}
+
+/* SIX */
+div:nth-child(6) {
+    background-color: khaki;
+}
+div:nth-child(6):hover {
+    transform:matrix(1.04,-0.60,1.37,0.37,-30,0);
+    box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.3);
+}
