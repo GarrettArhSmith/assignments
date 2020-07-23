@@ -34,14 +34,12 @@ console.log(system(`
 Thank you, ${input(name)}! You'll be making $11.50/hour, and you'll hate every second of it!
 Now get out there and ${chalk.italic(`"help"`)} some customers!`))
 
-let customer
+let customer, escaped, item, recoveredHealth
 let rounds = 0
 let damageDealt = 0
 let damageTaken = 0
 let customerSatisfaction = 0
 let mentalHealth = 20
-let escaped
-let item
 
 // FUNCTIONS TO DEAL/TAKE DAMAGE
 function takeDamage(max) {
@@ -79,8 +77,9 @@ function attackSequence() {
         item = items[Math.floor(Math.random() * items.length)]
         inventory[item] = (inventory[item] || 0) + 1
         console.log(input(`\nInventory: \n`), inventory)
-        mentalHealth += 5
-        console.log(system(`\nYou did it! You ${chalk.italic(`"helped"`)} that customer! You somehow ended up with ${item}, and gained back ${chalk.blue(`5`)} mental health.`))
+        20 - mentalHealth < 3 ? recoveredHealth = 20 - mentalHealth : recoveredHealth = 3
+        mentalHealth += recoveredHealth
+        console.log(system(`\nYou did it! You ${chalk.italic(`"helped"`)} that customer! You somehow ended up with ${item}, and gained back ${chalk.blue(recoveredHealth)} mental health.`))
     }
     else if (customerSatisfaction >= 10) {
         console.log(chalk.yellowBright(`\n...That customer was so appreciative of your ${chalk.italic(`"help"`)}. They mentioned it to your manager.`))
