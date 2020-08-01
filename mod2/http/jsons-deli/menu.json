@@ -1,0 +1,62 @@
+{
+    "appetizers": [
+        {
+            "name": "Chips and Gauc",
+            "ingredients": ["chips", "guac"],
+            "description": "Tortilla chips and gaucamole."
+        },
+        {
+            "name": "Chips and Queso",
+            "ingredients": ["chips", "queso"],
+            "description": "Tortilla chips and Queoso cheese dip."
+        }
+    ],
+    "coldSandwiches": [
+        {
+            "name": "Ham and Swiss",
+            "ingredients": ["wheat bread", "mayonaisse", "swiss cheese", "ham"],
+            "description": "Just a classic Ham Sandwich"
+        },
+        {
+            "name": "Turkey and Swiss",
+            "ingredients": ["wheat bread", "mayonaisse", "swiss cheese", "turkey"],
+            "description": "Just a classic Turkey Sandwich"
+        }
+    ],
+    "hotSandwiches": [
+        {
+            "name": "Philly Cheese Steak",
+            "ingredients": ["beef chuck roast", "sliced onions", "garlic", "bell peppers", "american cheese", "hoagie bun"],
+            "description": "Philadelphia Classic"
+        },
+        {
+            "name": "Grilled Cheese Sandwich",
+            "ingredients": ["white bread", "american cheese"],
+            "description": "#1 Kid Approved Sandwich"
+        }
+    ],
+    "desserts": [
+        {
+            "name": "New York Style Cheesecake",
+            "ingredients": ["cream cheese", "butter", "sugar", "egg", "graham craccker"],
+            "description": "Rich and Creamy dessert with a graham cracker crust."
+        },
+        {
+            "name": "Giant Chocolate Chunk Cookie",
+            "ingredients": ["flour", "butter", "egg", "chocolate", "baking soda", "sugar"],
+            "description": "Classic favorite, supersized."
+        }
+    ],
+    "drinks": [
+        {
+            "name": "Arnold Palmer",
+            "ingredients": ["tea", "lemonade"],
+            "description": "Half Tea, Half Lemonade"
+        },
+        {
+            "name": "[Ice] Water (w/ Lemon)",
+            "ingredients": ["water", "ice", "lemon"],
+            "description": "Refreshing glass of ice water. With a lemon wedge!"
+        }
+    ]
+}
