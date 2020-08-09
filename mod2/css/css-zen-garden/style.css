@@ -3,7 +3,7 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    color: #2e484c;
+    color: 325050;
 }
 
 .container {
@@ -14,9 +14,12 @@
     /* with six rows, 50px high */
     /* default all cells/children on the left be 2/3 the screen width, and all on the right 1/3 */
 }
-.container > div {
+.container > div:not(.header, .authors, .links){
     /*border: solid black 2px;*/
-    padding: 5% 5% 5% 15%;
+    padding: 5%;
+}
+.container > .main {
+    padding: 5% 5% 5% 15%!important;
 }
 
 .authors {
@@ -31,12 +34,51 @@
 
 .footer {
     /* make these span the width of the page */
-    background-color: aquamarine;
     grid-column: 1 / -1;
+    text-align: center;
+    background-color: #134347;
+    padding: 3% !important;
+}
+div.footer:nth-child(9) {
+    background: url(http://www.csszengarden.com/214/koi.jpg) no-repeat center;
+    font-size: 2em;
+    padding: 2em 12% !important;
+    font-style: italic;
+}
+div.footer:nth-child(9) > p{
+    color: rgba(255, 255, 255, 0.4) !important;
 }
 
 @media only screen and (max-width: 900px){
     /* use this media query to help these two cells drop to the bottom when screens are smaller */
+    .header {
+        padding: 5% 0 !important;
+    }
+    .header h1 {
+        font-size: 1.5em !important;
+    }
+    .header h2 {
+        font-size: 1em !important;
+        margin-left: 3%;
+    }
+    .header img {
+        min-width: 70px;
+        min-height: 70px;
+        width: 15vw !important;
+        height: 15vw !important;
+    }
+    .blackOverlay {
+        grid-template-columns: 1fr !important;
+    }
+    .button1 {
+        grid-row: 1 / 2;
+        justify-self: left !important;
+        width: 100% !important;
+    }
+    .button2 {
+        grid-row: 1 / 2;
+        justify-self: right;
+    }
     .authors {
          grid-row: 8 / 9;
     }
@@ -45,6 +87,38 @@
     }
     .blank {
         display: none;
+    }
+    .authors {
+        padding: 0 !important;
+        height: 440px;
+    }
+    .authors ul {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        flex-basis: 30%;
+        height: 100%;
+    }
+    .authors hr {display: none;}
+    .authors li {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-bottom: 1px solid #d9e3dc;
+        width: 50vw;
+        height: 110px;
+        margin: 0 !important;
+        padding-left: 10%;
+    }
+    .links {
+        padding: 0 !important;
+    }
+    .links ul {
+        column-count: 2;
+    }
+    .links li {
+        margin: 5% 20% !important;
     }
     /* container could use some help so that it's children are full screen width */
     .container {
@@ -58,33 +132,57 @@
 .icons {
     display: flex;
     justify-content: space-evenly;
-    width: 50%;
+    width: 85%;
     margin: auto;
-    padding: 10px 0;
+    padding: 10px 15px;
     flex-wrap: wrap;
 }
 
 .icons > div {
-    width: 30px;
-    height: 30px;
-    background-color: black;
+    min-width: 40px;
+    min-height: 40px;
+    width: 5vw;
+    height: 5vw;
+    background-color: lightgray;
     border-radius: 50%;
-    margin: 3px;
+    margin: 4px;
 }
 
 
 .background1 {
-    background: url(http://www.csszengarden.com/214/huntington.jpg) no-repeat top;
+    background: url(http://www.csszengarden.com/214/huntington.jpg) no-repeat;
     background-blend-mode: overlay;
-    background-size: contain;
+    background-size: cover;
     background-attachment: fixed;
 }
 
 .header2 {
     padding: 0 !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+}
+.header2 button {
+    font-family: Julius Sans One;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    height: 70px;
+    color: rgba(255, 255, 255, 0.65);
+}
+.header2 button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.button1 {
+    width: 75%;
+    font-size: 1.1em;
+    justify-self: right;
+    margin-right: 1px;
+}
+.button2 {
+    width: 70px;
+    font-size: 3em;
+    font-family: verdemoderna;
 }
 
 .blackOverlay {
@@ -92,6 +190,9 @@
     width: 100%;
     background-color: rgba(0, 0, 0, 0.08);
     color: #b8c8c9 !important;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 3fr 1fr;
 }
 
 p {
@@ -107,37 +208,97 @@ h3 {
 }
 
 .header {
-    height: 310px;
-    padding: 4vw 0 4vw 8vw !important;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-content: center;
+    align-self: center;
+    padding: 10% 0;
 }
 
-.header > h1 {
+.header h1 {
     color: white;
     font-family: Julius Sans One;
-    font-size: 3em;
-    float: left;
-    margin: 15px 0 0 40px;
+    font-size: 3.2vw;
+    margin: 10px 0;
 }
-.header > h2 {
+
+.header h2 {
     color: #b7c6c3;
     font-family: Libre Baskerville;
     font-style: italic;
-    float: left;
-    margin: 10px 0 0 40px;
+    font-size: 1.8vw;
 }
 
 .header img {
     width: 125px;
     height: 125px;
-    float: left;
+    float: right;
+    margin-right: 10%;
+}
+
+.header span:last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .middle {
     background-color: #c7dfd1;
 }
 
-.footer:nth-child(1) {
-    background: url(http://www.csszengarden.com/214/koi.jpg)no-repeat center;
-    background-size: cover;
-    color: white;
+.authors {
+    display: flex;
+    flex-direction: column;
+    padding: 15% 25% 15% 15%;
+}
+.authors ul {
+    list-style: none;
+    padding-left: 0;
+}
+.authors li {
+    margin: 7% 0;
+}
+.authors p {
+    margin: initial;
+    font-style: italic;
+    color: #c0cac3;
+}
+.authors a:first-child {
+    font-family: Julius Sans One;
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #607476;
+}
+.authors a:last-child {
+    text-decoration: none;
+    font-family: Libre Baskerville;
+    color: #616857;
+    font-size: 0.9em;
+    font-style: normal;
+}
+
+.authors hr {
+    border-bottom: none;
+    border-top: solid 1px #d9e3dc;
+}
+
+.links {
+    padding: 30% 25% 30% 15%;
+}
+.links ul {
+    list-style: none;
+    padding-left: 0;
+}
+.links a {
+    color: #607476;
+    text-decoration: none;
+    font-family: Julius Sans One;
+    font-size: 1.2em;
+}
+.links li {
+    margin: 10% 0;
+}
+.links hr {
+    border-bottom: none;
+    border-top: solid 1px #a0b9ad;
 }
