@@ -1,9 +1,13 @@
 @import url(http://fonts.googleapis.com/css?family=Julius+Sans+One|Libre+Baskerville:400,400italic);
 
+@font-face {
+    font-family: verdemoderna;
+    src: url(verdemoderna.woff);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
-    color: 325050;
 }
 
 .container {
@@ -22,9 +26,27 @@
     padding: 5% 5% 5% 15%!important;
 }
 
-.authors {
-    background-color: #e5ede9;
+.main .arrow {
+    font-family: 'verdemoderna'!important;
+    background-color: #d9e1cd;
+    color: #a9b995;
+    padding: 2px;
+    border-radius: 3px;
 }
+.main .arrow:hover {
+    color: whitesmoke;
+    background-color: #2680a3;
+    cursor: pointer;
+}
+.main span:not(.underline) {
+    color: #809b7e;
+    font-family: Julius Sans One;
+}
+.main a {
+    text-decoration: none;
+    color: #0d8ba1 !important;
+}
+
 .links {
     background-color: #b8d4c2;
 }
@@ -40,13 +62,18 @@
     padding: 3% !important;
 }
 div.footer:nth-child(9) {
-    background: url(http://www.csszengarden.com/214/koi.jpg) no-repeat center;
+    background: url(http://csszengarden.com/214/gridlines.png) fixed, url(http://csszengarden.com/214/contours-opaque.png) fixed, url(http://www.csszengarden.com/214/koi.jpg) no-repeat center;
     font-size: 2em;
     padding: 2em 12% !important;
     font-style: italic;
 }
 div.footer:nth-child(9) > p{
     color: rgba(255, 255, 255, 0.4) !important;
+}
+div.footer:nth-child(9) p a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-style: normal;
 }
 
 @media only screen and (max-width: 900px){
@@ -97,7 +124,6 @@ div.footer:nth-child(9) > p{
         flex-direction: column;
         flex-wrap: wrap;
         justify-content: space-around;
-        flex-basis: 30%;
         height: 100%;
     }
     .authors hr {display: none;}
@@ -113,13 +139,35 @@ div.footer:nth-child(9) > p{
     }
     .links {
         padding: 0 !important;
+        height: 150px;
     }
     .links ul {
-        column-count: 2;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: top;
+        height: 100%;
     }
     .links li {
-        margin: 5% 20% !important;
+        margin: 0 !important;
+        width: 50vw;
+        height: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 10%;
+        border-bottom: 1px solid #a0b9ad;
     }
+    .links hr {
+        display: none;
+    }
+    div.footer:nth-child(9) {
+        padding: 1em 5% !important;
+    }
+    .icons div::before {
+        font-size: 48px !important;
+    }
+    .icons div {height: 48px !important;}
     /* container could use some help so that it's children are full screen width */
     .container {
         grid-template-columns: 1fr;
@@ -134,25 +182,20 @@ div.footer:nth-child(9) > p{
     justify-content: space-evenly;
     width: 85%;
     margin: auto;
-    padding: 10px 15px;
+    padding: 10px 0;
     flex-wrap: wrap;
 }
 
 .icons > div {
-    min-width: 40px;
-    min-height: 40px;
-    width: 5vw;
-    height: 5vw;
-    background-color: lightgray;
+    height: 73px;
     border-radius: 50%;
     margin: 4px;
 }
 
-
 .background1 {
-    background: url(http://www.csszengarden.com/214/huntington.jpg) no-repeat;
+    background: url(http://www.csszengarden.com/214/huntington.jpg) no-repeat, url(http://csszengarden.com/214/gridlines.png), url(http://csszengarden.com/214/contours-opaque.png);
     background-blend-mode: overlay;
-    background-size: cover;
+    background-size: cover, auto, auto;
     background-attachment: fixed;
 }
 
@@ -182,7 +225,7 @@ div.footer:nth-child(9) > p{
 .button2 {
     width: 70px;
     font-size: 3em;
-    font-family: verdemoderna;
+    font-family: 'verdemoderna';
 }
 
 .blackOverlay {
@@ -199,12 +242,18 @@ p {
     font-family: Libre Baskerville;
     line-height: 2em;
     margin: 1em 0;
+    color: #325050;
+}
+
+.underline {
+    text-decoration: dotted underline;
 }
 
 h3 {
     font-family: Julius Sans One;
     font-size: 1.75em;
     margin: 2em 0 0.5em 0;
+    color: #2e484c
 }
 
 .header {
@@ -228,6 +277,7 @@ h3 {
     font-style: italic;
     font-size: 1.8vw;
 }
+u {text-decoration-style: dotted;}
 
 .header img {
     width: 125px;
@@ -250,6 +300,7 @@ h3 {
     display: flex;
     flex-direction: column;
     padding: 15% 25% 15% 15%;
+    background-color: #e5ede9;
 }
 .authors ul {
     list-style: none;
@@ -258,23 +309,31 @@ h3 {
 .authors li {
     margin: 7% 0;
 }
+.authors li:hover {
+    background: linear-gradient(90deg, rgba(229,237,233,1) 0%, rgba(234,242,238,1) 50%, rgba(229,237,233,1) 100%);
+}
 .authors p {
     margin: initial;
     font-style: italic;
     color: #c0cac3;
 }
+.authors a {
+    text-decoration: none;
+    transition: 0.5s ease;
+}
 .authors a:first-child {
     font-family: Julius Sans One;
-    text-decoration: none;
     font-size: 1.2em;
     color: #607476;
 }
 .authors a:last-child {
-    text-decoration: none;
     font-family: Libre Baskerville;
     color: #616857;
     font-size: 0.9em;
     font-style: normal;
+}
+.authors a:hover {
+    color: #0d8ba1;
 }
 
 .authors hr {
@@ -294,6 +353,10 @@ h3 {
     text-decoration: none;
     font-family: Julius Sans One;
     font-size: 1.2em;
+    transition: 0.5s ease;
+}
+.links a:hover {
+    color: #0d8ba1;
 }
 .links li {
     margin: 10% 0;
@@ -302,3 +365,40 @@ h3 {
     border-bottom: none;
     border-top: solid 1px #a0b9ad;
 }
+
+.background2 {
+    display: block;
+    position: relative;
+}
+.background2::after {
+    content: "";
+    background: url(http://csszengarden.com/214/bamboo.png) no-repeat, url(http://csszengarden.com/214/gridlines.png), url(http://csszengarden.com/214/contours-opaque.png);
+    background-attachment: fixed, scroll, scroll;
+    background-size: cover, auto, auto;
+    opacity: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -0;
+    pointer-events: none;
+}
+
+.icons div::before {
+    font-family: 'verdemoderna';
+    font-size: 72px;
+    color: #8ba1a3;
+    position: relative;
+}
+
+.icons div:nth-child(1)::before {content: "5"}
+.icons div:nth-child(1):hover::before {content: "5"}
+.icons div:nth-child(2)::before {content: "3"}
+.icons div:nth-child(2):hover::before {content: "3"}
+.icons div:nth-child(3)::before {content: "c"}
+.icons div:nth-child(3):hover::before {content: "C"}
+.icons div:nth-child(4)::before {content: "a"}
+.icons div:nth-child(4):hover::before {content: "A"}
+.icons div:nth-child(5)::before {content: "g"}
+.icons div:nth-child(5):hover::before {content: "G"}
