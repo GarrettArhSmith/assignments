@@ -9,30 +9,25 @@
 <body>
     <div id="container">
         <h1>Shopping List</h1>
+        <form name="addItem">
+            <li>
+                <div class="imgContainer"></div>
+                <div class="text">
+                    <input type="url" name="imgUrl" placeholder="Image URL...">
+                    <input type="number" name="price" placeholder="Price..." step=".01">
+                    <input type="text" name="title" placeholder="Title...">
+                    <input type="text" name="desc" placeholder="Description...">
+                </div>
+                <div class="actions">
+                    <button class="action add">Add New Item</button>
+                </div>
+            </li>
+        </form>
         <ul id="list">
-            <li>
-                <div id="imgContainer">
-                    <img src="https://bit.ly/2Fg9eXj" alt="">
-                </div>
-                <input type="checkbox" class="check">
-                <h3>milk</h3>
-                <p>specifically a2 milk</p>
-            </li>
-            <li>
-                <div id="imgContainer">
-                    <img src="https://bit.ly/2DUY4GR" alt="">
-                </div>
-                <input type="checkbox" class="check">
-                <h3>bread</h3>
-            </li>
-            <li>
-                <div id="imgContainer"></div>
-                <input type="checkbox" class="check">
-                <h3>eggs</h3>
-            </li>
         </ul>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
