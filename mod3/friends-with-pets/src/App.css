@@ -1,0 +1,51 @@
+
+body {
+  background-color: whitesmoke;
+}
+
+.title {
+  display: inline;
+}
+
+.value {
+  display: inline;
+  font-size: 1.5em;
+}
+
+.friend {
+  background-color: white;
+  padding: 20px 40px;
+  margin: 2% 5%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  border: 1px solid lightgray;
+  transition: 0.2s ease;
+}
+.friend:hover {
+  transform: translateY(-5px) scale(1.03);
+}
+
+.pets {
+  display: flex;
+  padding-left: 0;
+  grid-row: 4 / 5;
+}
+
+.pet {
+  list-style: none;
+  border: 1px solid lightgray;
+  display: inline-block;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  background-color: aliceblue;
+  transition: 0.2s ease;
+}
+.pet:hover {
+  transform: scale(1.05);
+}
+
+.pet > * {
+  margin: 10px;
+}
