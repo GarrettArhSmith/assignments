@@ -49,10 +49,34 @@ handleClick(e) {
       })
       break;
     case "Top Left": 
-      newColor = "red"
+      newColor = this.state.colors[0] === "red" ? "orange" : "red"
       this.setState(prevState => {
         newArr = prevState.colors.slice()
         newArr[0] = newColor
+        return {colors: newArr}
+      })
+      break;
+    case "Top Right": 
+      newColor = this.state.colors[1] === "green" ? "lime" : "green"
+      this.setState(prevState => {
+        newArr = prevState.colors.slice()
+        newArr[1] = newColor
+        return {colors: newArr}
+      })
+      break;
+    case "Bottom Left": 
+      newColor = this.state.colors[2] === "orange" ? "yellow" : "orange"
+      this.setState(prevState => {
+        newArr = prevState.colors.slice()
+        newArr[2] = newColor
+        return {colors: newArr}
+      })
+      break;
+    case "Bottom Right": 
+      newColor = this.state.colors[3] === "navy" ? "blue" : "navy"
+      this.setState(prevState => {
+        newArr = prevState.colors.slice()
+        newArr[3] = newColor
         return {colors: newArr}
       })
       break;
