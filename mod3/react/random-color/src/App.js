@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    loading: true,
+    color: ""
+  }
+
+  newColor = () => {
+    axios.get(`http://www.colr.org/json/color/random?timestamp=${new Date().getTime()}`)
+      .then(response => this.setState({loading: false, color: `#${response.data.new_color}`}))
+      .catch(error => console.log(error))
+  }
+  
+  componentDidMount() {
+    this.newColor()
+  }
+
+  render() {
+    return (
+      <div className="box" onClick={this.newColor} style={{backgroundColor: this.state.color}}>
+        <h1>{this.state.loading && "..."}</h1>
+      </div>
+    );
+  }
 }
 
 export default App;
