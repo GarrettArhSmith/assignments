@@ -7,6 +7,7 @@ function cipher(text, offset) {
     if (/[a-zA-Z]/.test(char)) {
       const caseNum = /[a-z]/.test(char) ? 122 : 90
       let charCode = char.charCodeAt() + offset
+      
       return (charCode > caseNum) ? charCode -= 26 : charCode
     } else return char.charCodeAt()
   }))
