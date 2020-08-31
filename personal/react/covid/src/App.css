@@ -1,0 +1,26 @@
+
+
+
+.app {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background-color: #cedae7;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.card {
+  margin: 10px !important;
+}
+.ant-card-body {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.countrySelect {
+  grid-column: 1 / 3;
+}
+
+.ant-card-body::before {
+  display: none !important;
+}
