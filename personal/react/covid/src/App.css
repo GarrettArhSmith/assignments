@@ -11,6 +11,12 @@
 
 .card {
   margin: 10px !important;
+  transition: 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  cursor: pointer;
 }
 .ant-card-body {
   display: grid;
