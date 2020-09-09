@@ -1,0 +1,83 @@
+
+
+* {box-sizing: border-box;}
+
+body {
+  background-color: whitesmoke;
+}
+
+.app {
+  display: grid;
+  place-items: center;
+}
+
+form {
+  padding: 20px;
+  background-color: cornflowerblue;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 20%);
+  justify-content: center;
+}
+form > button {
+  grid-column: 2 / 3;
+}
+
+input {
+  margin: 10px;
+}
+
+
+.uglyThings {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+
+.uglyThing {
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin: 20px;
+  width: 300px;
+  display: grid;
+  place-items: center;
+}
+.uglyThing > img {
+  width: 200px;
+}
+
+.actions {
+  align-self: flex-start;
+  justify-self: flex-end;
+  
+}
+
+.edit {
+  color: steelblue;
+}
+.delete {
+  color: darkred;
+}
+
+.actions > button {
+  border: none;
+  background-color: transparent;
+  padding: 3px 5px;
+  transition: 0.2s ease;
+  font-size: 1.1em;
+}
+.actions > button:hover {
+  transform: scale(1.3);
+  filter: brightness(1.3);
+  cursor: pointer;
+}
+.actions > button:active {
+  transform: scale(1);
+  filter: brightness(1);
+  cursor: pointer;
+}
+.actions > button:focus {
+  outline: none;
+}
+
