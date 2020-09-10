@@ -5,7 +5,8 @@ class Form extends Component {
     state = {
         title: "",
         imgUrl: "",
-        desc: ""
+        desc: "",
+        id: 0
     }
 
     handleChange = e => {
@@ -15,34 +16,34 @@ class Form extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        const { title, imgUrl, desc } = this.state
-        this.props.context.handleSubmit(title, imgUrl, desc)
-        this.setState({title: "", imgUrl: "", desc: ""})
+        const { title, imgUrl, desc, id } = this.state
+        this.props.context.handleSubmit(title, imgUrl, desc, id)
+        this.setState(({id}) => ({title: "", imgUrl: "", desc: "", id: id + 1}))
     }
 
     render() {
         const { title, imgUrl, desc } = this.state
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className="addThing" onSubmit={this.handleSubmit}>
                 <input 
                     type="text"
                     name="title"
                     placeholder="Title..."
-                    value={this.state.title}
+                    value={title}
                     onChange={this.handleChange}
                 />
                 <input 
                     type="text"
                     name="imgUrl"
                     placeholder="Img Url..."
-                    value={this.state.imgUrl}
+                    value={imgUrl}
                     onChange={this.handleChange}
                 />
                 <input 
                     type="text"
                     name="desc"
                     placeholder="Description..."
-                    value={this.state.desc}
+                    value={desc}
                     onChange={this.handleChange}
                 />
                 <button>SUBMIT</button>

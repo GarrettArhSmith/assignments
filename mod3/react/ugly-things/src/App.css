@@ -11,7 +11,7 @@ body {
   place-items: center;
 }
 
-form {
+.addThing {
   padding: 20px;
   background-color: cornflowerblue;
   width: 100%;
@@ -19,7 +19,7 @@ form {
   grid-template-columns: repeat(3, 20%);
   justify-content: center;
 }
-form > button {
+.addThing > button {
   grid-column: 2 / 3;
 }
 
@@ -39,12 +39,12 @@ input {
   border: 1px solid lightgray;
   border-radius: 5px;
   margin: 20px;
-  width: 300px;
+  min-width: 250px;
   display: grid;
   place-items: center;
 }
 .uglyThing > img {
-  width: 200px;
+  max-width: 200px;
 }
 
 .actions {
@@ -55,6 +55,9 @@ input {
 
 .edit {
   color: steelblue;
+}
+.save {
+  color: green;
 }
 .delete {
   color: darkred;
@@ -81,3 +84,18 @@ input {
   outline: none;
 }
 
+
+
+.editForm > input:last-of-type {
+  margin-bottom: 40px;
+}
+
+
+.editForm {
+  display: grid;
+}
+
+.editForm > label {
+  margin-left: 10px;
+  color: gray;
+}

@@ -19,11 +19,11 @@ class App extends Component {
               {context.uglyThings.map((thing, i) => (
                 <UglyThing 
                   key={i}
-                  id={i}
-                  title={thing.title} 
-                  imgUrl={thing.imgUrl} 
-                  desc={thing.desc} 
-                  edit={context.edit}
+                  id={thing?.id}
+                  title={thing?.title} 
+                  imgUrl={thing?.imgUrl} 
+                  desc={thing?.desc} 
+                  saveEdit={context.saveEdit}
                   delete={context.delete}
                 />
               ))}

@@ -7,16 +7,20 @@ class ContextProvider extends Component {
         uglyThings: []
     }
 
-    handleSubmit = (title, imgUrl, desc) => {
-        this.setState(({uglyThings}) => ({uglyThings: [...uglyThings, {title, imgUrl, desc}]}))
+    handleSubmit = (title, imgUrl, desc, id) => {
+        this.setState(({uglyThings}) => ({uglyThings: [...uglyThings, {title, imgUrl, desc, id}]}))
     }
 
-    edit = e => {
-        console.log(e.target.parentNode.id)
+    saveEdit = (clickedId, title, desc, imgUrl) => {
+        this.setState(({uglyThings}) => ({uglyThings: uglyThings.map(thing => {
+                return thing?.id === clickedId ? ({...thing, title, desc, imgUrl}) : thing
+            })})
+        )
     }
 
-    delete = () => {
-        console.log("delete")
+    delete = e => {
+        const clickedId = Number(e?.target.parentNode.id)
+        this.setState(({uglyThings}) => ({uglyThings: uglyThings.filter(thing => thing.id !== clickedId)}))
     }
 
     render() {
@@ -25,7 +29,7 @@ class ContextProvider extends Component {
                 value={{
                     uglyThings: this.state.uglyThings,
                     handleSubmit: this.handleSubmit,
-                    edit: this.edit,
+                    saveEdit: this.saveEdit,
                     delete: this.delete
             }}>
                 {this.props.children}
