@@ -1,0 +1,157 @@
+@import url(//db.onlinewebfonts.com/c/48003e838c62e754d4cc207117cc48cd?family=FolioW01-ExtraBold);
+
+
+.App {
+  display: grid;
+  grid-gap: 3px;
+  
+  grid-template: 15vh 70vh 15vh / 1fr;
+  background-color: whitesmoke;
+
+}
+
+
+nav {
+  background: linear-gradient(90deg, #506bb7 0%, #506bb7 50%, rgb(45,57,125) 100%);
+  grid-column: 1/-1;
+  display: flex;
+  align-items: center;
+}
+.logo {
+  margin-left: 5%;
+  font-size: 2.5em;
+  font-weight: bold;
+  font-family: "FolioW01-ExtraBold";
+  font-style: italic;
+  color: #D52D37;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: whitesmoke;
+}
+.logo > .secondary {
+  color: #2D397D;
+}
+nav > ul {
+  margin-left: auto;
+  display: flex;
+  width: 40%;
+  padding-left: 0;
+  list-style-type: none;
+}
+nav li {
+  font-weight: bold;
+  transition: 0.5s ease;
+  color: whitesmoke;
+  height: 15vh;
+  display: grid;
+  place-items: center;
+}
+nav li:hover {
+  background-color: whitesmoke;
+  color: #506bb7;
+}
+nav a {
+  text-decoration: none;
+}
+
+main {
+  grid-column: 1/-1;
+  display: grid;
+  align-items: center;
+  color: #2D397D;
+}
+
+.home {
+  grid-template: 65vh / 1fr 1fr;
+}
+.home > img {
+  justify-self: center;
+}
+
+.about {
+  justify-content: center;
+  display: grid;
+  padding: 0 5%;
+  grid-gap: 8%;
+  grid-template-columns: 1fr 1fr ;
+  font-size: 1.2em;
+}
+.about img {
+  width: 100%;
+  justify-self: flex-end;
+}
+.about p {
+  align-self: flex-start;
+  line-height: 1.5em;
+}
+
+.services {
+  justify-content: center;
+  grid-template-rows: 40% 60%;
+}
+.services ul {
+  align-self: flex-start;
+  list-style-type: none;
+  display: flex;
+  grid-gap: 20px;
+  padding-left: 0;
+}
+
+.serviceCard {
+  background-color: white;
+  padding: 30px 30px 40px 30px;
+  width: 200px;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 2px rgba(0, 0, 0, 0.1);
+}
+.serviceCard a {
+  color: #D52D37;
+  font-weight: bold;
+  text-decoration: none;
+}
+.serviceCard a:hover {
+  text-decoration: underline;
+}
+.serviceImg {
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  border-radius: 100%;
+  border: 3px solid #506bb7;
+  display: grid;
+  place-items: center;
+  position: relative;
+  top: -35px;
+  margin: -100px;
+  transition: 0.2s ease;
+}
+.serviceImg:hover {
+  box-shadow: 0 0 7px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  background-color: whitesmoke;
+  border: 3px solid white;
+}
+.serviceCard img {
+  height: 60px;
+}
+
+
+
+footer {
+  background-color: lightgray;
+  grid-column: 1/-1;
+  padding: 0 20%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+}
+footer a {
+  color: #506bb7;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+footer a:hover {
+  transform: scale(1.1);
+}
