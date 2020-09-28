@@ -1,0 +1,38 @@
+.focused {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    height: 40vh;
+}
+
+.temp {
+    font-size: 5em;
+}
+.focused .temp {
+    color: royalblue;
+}
+.appTemp {
+    font-size: 1.2em;
+    color: royalblue;
+}
+
+.focused span {
+    grid-row: 1/2;
+}
+
+.focused img {
+    grid-column: 2/-1;
+    width: 200px;
+}
+.focused ul {
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.focused li {
+}
+.tabContent {
+    grid-column: 1/-1;
+}
