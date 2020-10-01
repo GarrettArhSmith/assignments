@@ -1,0 +1,11 @@
+.secondary {
+    font-size: 0.5em;
+    vertical-align: middle;
+}
+.hours {
+    list-style-type: none;
+    padding-left: 0;
+}
+.hours .temp {
+    font-size: 2em;
+}

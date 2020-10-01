@@ -5,11 +5,9 @@
     height: 40vh;
 }
 
-.temp {
-    font-size: 5em;
-}
 .focused .temp {
     color: royalblue;
+    font-size: 5em;
 }
 .appTemp {
     font-size: 1.2em;
@@ -24,7 +22,7 @@
     grid-column: 2/-1;
     width: 200px;
 }
-.focused ul {
+.tabs {
     list-style-type: none;
     padding-left: 0;
     display: flex;
@@ -32,6 +30,11 @@
     justify-content: space-between;
 }
 .focused li {
+    color: #404040;
+    font-weight: bold;
+}
+.focused a {
+    text-decoration: none;
 }
 .tabContent {
     grid-column: 1/-1;

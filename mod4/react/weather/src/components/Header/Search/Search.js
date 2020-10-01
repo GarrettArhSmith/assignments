@@ -21,7 +21,7 @@ function Search(props) {
         context.setLoading(true)
         if(/[a-zA-Z]/.test(input)) {
             axios.get(`https://api.weatherbit.io/v2.0/current?city=
-            ${input.replace(" ", "")}&key=f65362e501524bfa8919d00596e2674f`)
+            ${input.replace(/ /g, "")}&key=f65362e501524bfa8919d00596e2674f`)
                 .then(response => context.handleSubmit(response.data.data[0]))
                 .catch(error => console.log(error))
         } else if (/[0-9]/.test(input)) {

@@ -1,0 +1,22 @@
+.hour:nth-child(odd) {
+background-color: whitesmoke;
+}
+.hour .temp {
+    color: gray;
+}
+.hour {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 50px;
+}
+.hour span {
+    grid-column: 3/4;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+.hour img {
+    width: 50px;
+    margin-right: 5px;
+}

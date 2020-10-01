@@ -3,7 +3,6 @@ import { Switch, Route, Link } from 'react-router-dom'
 import { Context } from '../../../Context'
 import './Focused.css'
 import Save from './Save/Save'
-import Today from './Today/Today'
 import Hourly from './Hourly/Hourly'
 import FiveDay from './FiveDay/FiveDay'
 import TenDay from './TenDay/TenDay'
@@ -33,17 +32,15 @@ function Focused(props) {
                 src={`https://www.weatherbit.io/static/img/icons/${weatherData?.weather?.icon}.png`} 
                 alt={weatherData.weather?.description}
             />
-            <ul>
-                <Link to="/"><li>Today</li></Link>
-                <Link to="hourly"><li>Hourly</li></Link>
+            <ul className="tabs">
+                <Link exact to="/"><li>Hourly</li></Link>
                 <Link to="5day"><li>5 Day</li></Link>
                 <Link to="10day"><li>10 Day</li></Link>
             </ul>
 
 
             <Switch>
-                <Route exact path="/"><Today /></Route>
-                <Route path="/hourly"><Hourly /></Route>
+                <Route exact path="/"><Hourly /></Route>
                 <Route path="/5day"><FiveDay /></Route>
                 <Route path="/10day"><TenDay /></Route>
             </Switch>

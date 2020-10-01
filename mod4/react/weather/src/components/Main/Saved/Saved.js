@@ -7,10 +7,11 @@ const axios = require('axios').default;
 function Saved(props) {
     const {weatherData, unit, convertToF} = useContext(Context)
     const [data, setData] = useState({})
+    console.log(`${props?.cityName.replace(/ /g, "")},${props.stateCode}`)
 
     useEffect(() => {
         axios.get(`https://api.weatherbit.io/v2.0/current?city=
-        ${props.cityName.replace(" ", "")},${props.stateCode}&key=f65362e501524bfa8919d00596e2674f`)
+        ${props.cityName.replace(/ /g, "")},${props.stateCode}&key=f65362e501524bfa8919d00596e2674f`)
             .then(response => setData(response.data.data[0]))
             .catch(error => console.log(error))
     }, [weatherData])
