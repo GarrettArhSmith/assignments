@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext } from 'react'
 import { Switch, Route, Link } from 'react-router-dom'
 import { Context } from '../../../Context'
 import './Focused.css'
@@ -6,6 +6,7 @@ import Save from './Save/Save'
 import Hourly from './Hourly/Hourly'
 import FiveDay from './FiveDay/FiveDay'
 import TenDay from './TenDay/TenDay'
+
 
 
 function Focused(props) {

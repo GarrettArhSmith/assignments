@@ -10,13 +10,11 @@ function SavedList(props) {
     return (
         <ul className="savedList">
             <h3>Saved Locations</h3>
-            {saved.map((city, i) => <Link to="">
-                <Saved 
+            {saved.map((city, i) => <Saved 
                     key={city.city_name + city.state_code + i} 
                     cityName={city.city_name} 
                     stateCode={city.state_code} 
                 />
-            </Link>
             )}
         </ul>
     );

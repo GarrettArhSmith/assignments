@@ -72,6 +72,8 @@ section {
   grid-column: 1/2;
   place-self: center;
   width:75%;
+  border-radius: 100%;
+  transition: 0.5s ease;
 }
 .title {
   color: midnightblue;
@@ -106,6 +108,7 @@ section {
   display: grid;
   align-self: center;
   grid-column: 2/3;
+  border-radius: 3%;
 }
 .tech {
   display: inline;
@@ -120,7 +123,7 @@ section {
   color: rgb(235, 71, 12);
   font-weight: bold;
   text-decoration: none;
-  transition: 0.5s ease;
+  transition: 0.4s ease;
   border: 1px solid rgb(235, 71, 12);
   text-align: center;
   width: 30%;
