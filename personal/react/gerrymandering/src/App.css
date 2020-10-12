@@ -1,0 +1,34 @@
+
+.App {
+  display: grid;
+  place-items: center;
+  padding: 0 10vh;
+  height: 100vh;
+  background-color: whitesmoke;
+}
+
+.dimSlider {
+  width: 50%;
+}
+
+.board {
+  display: grid;
+  place-items: center;
+  grid-gap: 20px;
+}
+
+.square {
+  background-color: lightblue;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  display: grid;
+  place-items: center;
+  color: whitesmoke;
+  transition: 0.2s ease;
+}
+.square:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
