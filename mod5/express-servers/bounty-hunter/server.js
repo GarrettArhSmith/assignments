@@ -4,24 +4,50 @@ const { v4: uuid } = require('uuid');
 
 app.use(express.json())
 
-const users = [
-    {name: "Garrett Smith", age:23, _id: uuid()},
-    {name: "Garrett Smith", age:23, _id: uuid()},
-    {name: "Garrett Smith", age:23, _id: uuid()},
-    {name: "Garrett Smith", age:23, _id: uuid()},
-    {name: "Garrett Smith", age:23, _id: uuid()},
-    {name: "Garrett Smith", age:23, _id: uuid()}
+const bounties = [
+    {fName: "Jack", lName: "Smith", living: true, bountyAmount: 500, type: "Jedi", _id: uuid()},
+    {fName: "Garrett", lName: "Smith", living: true, bountyAmount: 500, type: "Jedi", _id: uuid()},
+    {fName: "Garrett", lName: "Smith", living: true, bountyAmount: 500, type: "Jedi", _id: uuid()},
+    {fName: "Garrett", lName: "Smith", living: true, bountyAmount: 500, type: "Jedi", _id: uuid()},
+    {fName: "Garrett", lName: "Smith", living: true, bountyAmount: 500, type: "Jedi", _id: uuid()},
+    {fName: "Garrett", lName: "Smith", living: true, bountyAmount: 500, type: "Jedi", _id: uuid()}
 ]
 
 
-app.get("/bounty", (req, resp) => {
-    resp.send(users )
+app.get("/bounties", (req, res) => {
+    res.send(bounties)
 })
-app.post("/bounty", (req, res) => {
-    const newUser = req.body
-    newUser._id = uuid()
-    users.push(newUser)
-    res.send(`Successfully added ${newUser.name} to the database!`)
+app.get("/:bountyId", (req, res) => {
+    const bountyId = req.params.bountyId
+    res.send(bounties.find(bounty => bounty._id === bountyId))
+})
+
+app.post("/bounties", (req, res) => {
+    const newBounty = req.body
+    newBounty._id = uuid()
+    bounties.push(newBounty)
+    res.send(`Successfully created a $${newBounty.bountyAmount} bounty for ${newBounty.fName} ${newBounty.lName}!`)
+})
+
+app.delete("/:bountyId", (req, res) => {
+    const bountyId = req.params.bountyId
+    let targetBounty;
+    bounties.map((bounty, i) => {
+        if (bounty._id === bountyId) {
+            targetBounty = bounty
+            bounties.splice(i, 1)
+        }
+    })
+    res.send(`Successfully removed the bounty for ${targetBounty.fName} ${targetBounty.lName}!`)
+})
+
+app.put("/:bountyId", (req, res) => {
+    const bountyId = req.params.bountyId
+    const changes = req.body
+    const target = bounties.find(bounty => bounty._id === bountyId)
+    Object.assign(target, changes)
+    res.send(`Successfully updated bounty!`)
+
 })
 //etc.
 

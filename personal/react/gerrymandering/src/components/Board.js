@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Context } from './Context'
+import Circle from './Circle'
 
 function Board(props) {
     const {dimensions} = useContext(Context)
@@ -8,7 +9,7 @@ function Board(props) {
 
     for (let i = 1; i <= dimensions; i++) {
         for (let j = 1; j <= dimensions; j++) {
-            board.push(<div className="square" style={{backgroundColor: Math.random() >= 0.5 ? "lightcoral" : "lightblue"}}></div>)
+            board.push(<Circle />)
         }
     }
 
