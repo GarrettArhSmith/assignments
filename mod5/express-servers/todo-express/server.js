@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const { v4: uuid } = require('uuid');
-
+const morgan = require('morgan')
 
 const todos = [
     {
@@ -14,6 +14,7 @@ const todos = [
 ]
 
 app.use(express.json())
+app.use(morgan('dev'))
 
 let todoId
 

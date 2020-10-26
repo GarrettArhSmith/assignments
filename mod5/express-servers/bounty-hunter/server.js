@@ -1,13 +1,15 @@
 const express = require('express')
 const app = express()
 const { v4: uuid } = require('uuid');
+const morgan = require('morgan')
 
 app.use(express.json())
+app.use(morgan('dev'))
 
 const bounties = [
     {fName: "Jack", lName: "Smith", living: true, bountyAmount: 500, type: "Jedi", _id: uuid()},
     {fName: "Garrett", lName: "Smith", living: true, bountyAmount: 500, type: "Jedi", _id: uuid()},
-    {fName: "Garrett", lName: "Smith", living: true, bountyAmount: 500, type: "Jedi", _id: uuid()},
+    {fName: "Garrett", lName: "Smith", living: false, bountyAmount: 500, type: "Jedi", _id: uuid()},
     {fName: "Garrett", lName: "Smith", living: true, bountyAmount: 500, type: "Jedi", _id: uuid()},
     {fName: "Garrett", lName: "Smith", living: true, bountyAmount: 500, type: "Jedi", _id: uuid()},
     {fName: "Garrett", lName: "Smith", living: true, bountyAmount: 500, type: "Jedi", _id: uuid()}
@@ -17,7 +19,7 @@ const bounties = [
 app.get("/bounties", (req, res) => {
     res.send(bounties)
 })
-app.get("/:bountyId", (req, res) => {
+app.get("/bounties/:bountyId", (req, res) => {
     const bountyId = req.params.bountyId
     res.send(bounties.find(bounty => bounty._id === bountyId))
 })
@@ -26,10 +28,10 @@ app.post("/bounties", (req, res) => {
     const newBounty = req.body
     newBounty._id = uuid()
     bounties.push(newBounty)
-    res.send(`Successfully created a $${newBounty.bountyAmount} bounty for ${newBounty.fName} ${newBounty.lName}!`)
+    res.send(newBounty)
 })
 
-app.delete("/:bountyId", (req, res) => {
+app.delete("/bounties/:bountyId", (req, res) => {
     const bountyId = req.params.bountyId
     let targetBounty;
     bounties.map((bounty, i) => {
@@ -41,12 +43,11 @@ app.delete("/:bountyId", (req, res) => {
     res.send(`Successfully removed the bounty for ${targetBounty.fName} ${targetBounty.lName}!`)
 })
 
-app.put("/:bountyId", (req, res) => {
+app.put("/bounties/:bountyId", (req, res) => {
     const bountyId = req.params.bountyId
     const changes = req.body
     const target = bounties.find(bounty => bounty._id === bountyId)
-    Object.assign(target, changes)
-    res.send(`Successfully updated bounty!`)
+    res.send(Object.assign(target, changes))
 
 })
 //etc.
