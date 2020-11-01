@@ -17,18 +17,18 @@ const bounties = [
 
 
 app.get("/bounties", (req, res) => {
-    res.send(bounties)
+    res.status(200).send(bounties)
 })
 app.get("/bounties/:bountyId", (req, res) => {
     const bountyId = req.params.bountyId
-    res.send(bounties.find(bounty => bounty._id === bountyId))
+    res.status(200).send(bounties.find(bounty => bounty._id === bountyId))
 })
 
 app.post("/bounties", (req, res) => {
     const newBounty = req.body
     newBounty._id = uuid()
     bounties.push(newBounty)
-    res.send(newBounty)
+    res.status(201).send(newBounty)
 })
 
 app.delete("/bounties/:bountyId", (req, res) => {
@@ -40,14 +40,14 @@ app.delete("/bounties/:bountyId", (req, res) => {
             bounties.splice(i, 1)
         }
     })
-    res.send(`Successfully removed the bounty for ${targetBounty.fName} ${targetBounty.lName}!`)
+    res.status(200).send(`Successfully removed the bounty for ${targetBounty.fName} ${targetBounty.lName}!`)
 })
 
 app.put("/bounties/:bountyId", (req, res) => {
     const bountyId = req.params.bountyId
     const changes = req.body
     const target = bounties.find(bounty => bounty._id === bountyId)
-    res.send(Object.assign(target, changes))
+    res.status(201).send(Object.assign(target, changes))
 
 })
 //etc.

@@ -30,12 +30,13 @@ function App(props) {
 
   function editBounty(updates, bountyId) {    
     axios.put(`/bounties/${bountyId}`, updates)
-      .then(res => {(
-        setBounties(prevBounties => (
+      .then(res => setBounties(prevBounties => (
           prevBounties.map(bounty => bounty._id !== bountyId ? bounty : res.data)
-        ))
-      )})
-      .catch(err => console.log(err))
+        )))
+      .catch(err => {
+        console.log(updates, bountyId)
+        console.log(err)
+      })
   }
 
   useEffect(() => {
@@ -49,7 +50,7 @@ function App(props) {
       {bounties?.map(bounty => 
           <Bounty 
             key={bounty._id} 
-            deleteBounty={deleteBounty} 
+            deleteBounty={deleteBounty}
             editBounty={editBounty}
             {...bounty} 
           />

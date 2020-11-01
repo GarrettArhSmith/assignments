@@ -5,7 +5,7 @@ function AddBountyForm(props) {
     const initInputs = {
         fName: fName || "",
         lName: lName || "",
-        living: living || true,
+        living: living && true,
         bountyAmount: bountyAmount || 0,
         type: type || ""
     }
@@ -21,6 +21,7 @@ function AddBountyForm(props) {
     function handleSubmit(e) {
         e.preventDefault()
         props.submit(inputs, _id)
+        _id && props.toggleEdit()
         setInputs(initInputs)
     }
 

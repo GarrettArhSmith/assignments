@@ -11,7 +11,6 @@ function Bounty(props) {
 
     return (
         isEditing ?
-        <>
             <BountyForm 
                 submit={editBounty}
                 fName={fName}
@@ -20,9 +19,8 @@ function Bounty(props) {
                 bountyAmount={bountyAmount}
                 type={type}
                 _id={_id}
+                toggleEdit={toggleEdit}
             />
-            <button onClick={toggleEdit}>Save Edit</button>
-        </>
         :
         <div>
             <h1>{fName} {lName} - ${bountyAmount}</h1>
