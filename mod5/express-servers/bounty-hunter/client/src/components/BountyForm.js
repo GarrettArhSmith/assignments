@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 
 function AddBountyForm(props) {
     const { fName, lName, living, bountyAmount, type, _id } = props
+    console.log(`living: ${living}`)
     const initInputs = {
         fName: fName || "",
         lName: lName || "",
-        living: living && true,
+        living: living === undefined && true,
         bountyAmount: bountyAmount || 0,
         type: type || ""
     }
@@ -24,7 +25,7 @@ function AddBountyForm(props) {
         _id && props.toggleEdit()
         setInputs(initInputs)
     }
-
+console.log(inputs)
     return (
         <form onSubmit={handleSubmit}>
             <input type="text" name="fName" value={inputs.fName} onChange={handleChange} />
@@ -32,6 +33,7 @@ function AddBountyForm(props) {
             <input type="checkbox" name="living" checked={inputs.living} onChange={handleChange} />
             <input type="number" name="bountyAmount" value={inputs.bountyAmount} onChange={handleChange} />
             <select name="type" value={inputs.type} onChange={handleChange}>
+                <option> - Choose Side - </option>
                 <option value="Jedi">Jedi</option>
                 <option value="Sith">Sith</option>
             </select>

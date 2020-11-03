@@ -4,12 +4,7 @@ import { Context } from './Context'
 function Circle(props) {
     const {chance, totals, setTotals} = useContext(Context) 
 
-    const color = Math.random() >= chance ? "lightcoral" : "lightblue"
-
-    if(color === "lightcoral") setTotals(prevTotals => ({...prevTotals, red: prevTotals.red + 1}))
-    if(color === "lightblue") setTotals(prevTotals => ({...prevTotals, blue: prevTotals.blue + 1}))
-
-    console.log(totals.red)
+    const color = Math.random() >= 0.5 ? "lightcoral" : "lightblue"
 
     function handleClick(e) {
         console.log(color)

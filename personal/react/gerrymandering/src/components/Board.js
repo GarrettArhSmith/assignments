@@ -7,10 +7,8 @@ function Board(props) {
 
     const board = []
 
-    for (let i = 1; i <= dimensions; i++) {
-        for (let j = 1; j <= dimensions; j++) {
-            board.push(<Circle />)
-        }
+    for (let i = 1; i <= dimensions ** 2; i++) {
+        board.push(<Circle />)
     }
 
     return (
