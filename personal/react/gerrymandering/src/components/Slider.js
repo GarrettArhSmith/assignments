@@ -11,7 +11,10 @@ function Slider(props) {
     }
 
     return (
-        <input type="range" min="2" max="15" value={dimensions} className="dimSlider" onChange={changeDimensions} />
+        <>
+            <h1>{dimensions} x {dimensions}</h1>
+            <input type="range" min="2" max="15" value={dimensions} className="dimSlider" onChange={changeDimensions} />
+        </>
     );
 }
 

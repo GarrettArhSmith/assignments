@@ -5,6 +5,7 @@
   padding: 0 10vh;
   height: 100vh;
   background-color: whitesmoke;
+  grid-template-rows: 5vh 10vh 85vh;
 }
 
 .dimSlider {
@@ -31,4 +32,8 @@
   transform: scale(1.2);
   cursor: pointer;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  margin: 0;
 }
