@@ -9,6 +9,7 @@ function Hourly(props) {
     const [data, setData] = useState([])
 
     useEffect(() => {
+        console.log(`https://api.weatherbit.io/v2.0/forecast/hourly?city=${weatherData?.city_name},${weatherData?.state_code}&key=f65362e501524bfa8919d00596e2674f&hours=48`)
         axios.get(`https://api.weatherbit.io/v2.0/forecast/hourly?city=${weatherData?.city_name},${weatherData?.state_code}&key=f65362e501524bfa8919d00596e2674f&hours=48`)
             .then(response => setData(response.data.data))
             .catch(error => console.log(error))
