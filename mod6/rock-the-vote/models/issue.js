@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
-const Schema = mongoose.Schema()
+const Schema = mongoose.Schema
 
-const issueSchema = {
+const issueSchema = new Schema({
     title: {
         type: String,
         required: true
@@ -12,7 +12,6 @@ const issueSchema = {
     },
     votes: {
         type: Number,
-        required: true,
         default: 0
     },
     dateCreated: {
@@ -24,6 +23,6 @@ const issueSchema = {
         ref: "User",
         required: true
     }
-}
+})
 
 module.exports = mongoose.model("Issue", issueSchema)
