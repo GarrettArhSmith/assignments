@@ -2,6 +2,21 @@ const express = require('express')
 const issueRouter = express.Router()
 const Issue = require('../models/issue')
 
+//GET ALL USER ISSUES
+issueRouter.get("/user", (req, res, next) => {
+    console.log(req.user)
+    Issue.find(
+        { user: req.user._id },
+        (err, issues) => {
+            if(err) {
+                res.status(500)
+                return next(err)
+            }
+            return res.status(200).send(issues)
+        }
+    )
+})
+
 //GET ALL
 issueRouter.get("/", (req, res, next) => {
     Issue.find((err, issues) => {
@@ -23,20 +38,6 @@ issueRouter.get("/:issueId", (req, res, next) => {
                 return next(err)
             }
             return res.status(200).send(issue)
-        }
-    )
-})
-
-//GET ALL USER ISSUES
-issueRouter.get("/user", (req, res, next) => {
-    Issue.find(
-        { user: req.user._id },
-        (err, issues) => {
-            if(err) {
-                res.status(500)
-                return next(err)
-            }
-            return res.status(200).send(issues)
         }
     )
 })

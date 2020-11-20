@@ -25,10 +25,10 @@ app.use("/api/issue", require('./routes/issueRouter'))
 
 app.use((err, req, res, next) => {
     console.log(err)
-    if(error.name === "UnauthorizedError") {
+    if(err.name === "UnauthorizedError") {
         res.status(err.status)
     }
-    return res.send({ errMsg: error.message })
+    return res.send({ errMsg: err.message })
 })
 
 app.listen(9000, () => {
