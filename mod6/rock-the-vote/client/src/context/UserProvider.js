@@ -14,10 +14,10 @@ function UserProvider(props) {
     const initUserState = {
         user: JSON.parse(localStorage.getItem("user")) || {},
         token: localStorage.getItem("token") || "",
-        issues: []
+        userIssues: []
     }
     const [userState, setUserState] = useState(initUserState)
-    const [issues, setIssues] = useState([])
+    const [allIssues, setAllIssues] = useState([])
 
     function signup(credentials) {
         axios.post("/auth/signup", credentials)
@@ -36,24 +36,45 @@ function UserProvider(props) {
                 const { user, token } = res.data
                 localStorage.setItem("token", token)
                 localStorage.setItem("user", JSON.stringify(user))
-                getAllTodos()
+                getAllIssues()
+                getUserIssues()
                 setUserState(prev => ({...prev, token, user}))
             })
             .catch(err => console.log(err.response.data.errMsg))
     }
 
-    function getAllTodos() {
+    function getAllIssues() {
         userAxios.get("/api/issue")
-            .then(res => setIssues(res.data))
+            .then(res => setAllIssues(res.data))
+            .catch(err => console.log(err.response.data.errMsg))
+    }
+
+    function getUserIssues() {
+        userAxios.get("/api/issue/user")
+            .then(res => setUserState(prevUserState => ({
+                ...prevUserState,
+                userIssues: res.data
+            })))
             .catch(err => console.log(err.response.data.errMsg))
     }
 
     function addIssue(newIssue) {
         userAxios.post("/api/issue", newIssue)
             .then(res => {
-                setIssues(prevIssues => [...prevIssues, res.data])
-                setUserState(prev => ({...prev, issues: [...prev.issues, res.data]}))
+                setAllIssues(prev => [...prev, res.data])
+                setUserState(prev => ({...prev, userIssues: [...prev.userIssues, res.data]}))
             })
+            .catch(err => console.log(err.response.data.errMsg))
+    }
+
+    function addVote(issueId, type) {
+        userAxios.put(`/api/vote/${type}/add/${issueId}`)
+            .then(res => console.log())
+            .catch(err => console.log(err.response.data.errMsg))
+    }
+    function deleteVote(issueId, type) {
+        userAxios.put(`/api/vote/${type}/delete/${issueId}`)
+            .then(res => console.log())
             .catch(err => console.log(err.response.data.errMsg))
     }
 
@@ -64,7 +85,9 @@ function UserProvider(props) {
                 signup,
                 login,
                 addIssue,
-                issues
+                getAllIssues,
+                allIssues,
+                vote: { addVote, deleteVote }
             }}
         >
             {props.children}

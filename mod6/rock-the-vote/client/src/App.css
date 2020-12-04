@@ -1,3 +1,60 @@
 .App {
   text-align: center;
 }
+
+.issueList {
+    padding: 50px;
+    display: grid;
+    grid-gap: 25px;
+    grid-template-columns: 50%;
+    grid-template-rows: auto;
+}
+
+.issue {
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    display: grid;
+    grid-template-columns: 1fr 15fr;
+    overflow: hidden;
+}
+.issue:hover {
+    border: 1px solid #999999;
+    cursor: pointer;
+}
+.issueContent {
+    text-align: left;
+    padding: 10px;
+}
+
+.votes {
+    background-color: #f8f9fa;
+    grid-column: 1/2;
+    grid-row: 1/4;
+}
+.vote {
+    font-size: 1.1em;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    height: 25px;
+    width: 25px;
+}
+.vote:focus {
+    outline: none;
+}
+.vote:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: #e2e2e3;
+}
+.vote:active {
+    transform: scale(1);
+}
+
+.up {
+    color: forestgreen;
+}
+.down {
+    color: maroon;
+}

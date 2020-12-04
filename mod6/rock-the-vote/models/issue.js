@@ -10,10 +10,14 @@ const issueSchema = new Schema({
         type: String,
         required: true
     },
-    votes: {
-        type: Number,
-        default: 0
-    },
+    upVoters: [{
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }],
+    downVoters: [{
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }],
     dateCreated: {
         type: Date,
         default: Date.now
