@@ -30,16 +30,15 @@ issueRouter.get("/", (req, res, next) => {
 
 //GET ONE
 issueRouter.get("/:issueId", (req, res, next) => {
-    Issue.findOne(
-        { _id: req.params.issueId },
-        (err, issue) => {
+    Issue.findOne({ _id: req.params.issueId })
+        .populate('user')
+        .exec((err, issue) => {
             if(err) {
                 res.status(500)
                 return next(err)
             }
             return res.status(200).send(issue)
-        }
-    )
+        })
 })
 
 //POST ISSUE

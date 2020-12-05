@@ -17,7 +17,10 @@ function Public(props) {
             <h3>Welcome, {username}!</h3>
             <IssueForm />
             <div className="issueList">
-                {[...allIssues].reverse().map(issue => <Issue key={issue._id} {...issue} />)}
+                {[...allIssues].reverse().map(issue => {
+                    console.log(issue)
+                    return <Issue key={issue._id} {...issue} />
+                    })}
             </div>
         </div>
     );

@@ -1,6 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { UserContext } from '../context/UserProvider'
 import { ImArrowUp, ImArrowDown } from 'react-icons/im'
+
 import axios from 'axios'
 const userAxios = axios.create()
 userAxios.interceptors.request.use(config => {
@@ -10,7 +11,7 @@ userAxios.interceptors.request.use(config => {
 })
 
 function Vote(props) {
-    const { vote: { addVote, deleteVote }, user, getAllIssues } = useContext(UserContext)
+    const { vote: { addVote, deleteVote }, user } = useContext(UserContext)
     const { _id, votes:{ upVotes, downVotes } } = props
 
     const [upVoters, setUpVoters] = useState(upVotes)

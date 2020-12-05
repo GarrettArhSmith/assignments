@@ -86,6 +86,7 @@ function UserProvider(props) {
                 login,
                 addIssue,
                 getAllIssues,
+                getUserIssues,
                 allIssues,
                 vote: { addVote, deleteVote }
             }}

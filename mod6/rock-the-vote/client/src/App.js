@@ -5,6 +5,7 @@ import Nav from './components/Nav'
 import Auth from './components/Auth'
 import Public from './components/Public'
 import Profile from './components/Profile'
+import IssuePage from './components/IssuePage'
 import { UserContext } from './context/UserProvider'
 
 function App() {
@@ -22,6 +23,9 @@ function App() {
                 </Route>
                 <Route path="/auth">
                     <Auth />
+                </Route>
+                <Route path="/:issueId">
+                    <IssuePage />
                 </Route>
             </Switch>
         </div>
