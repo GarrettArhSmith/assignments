@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { UserContext } from '../context/UserProvider'
+import { Link } from 'react-router-dom'
+
 import IssueForm from './IssueForm'
 import Issue from './Issue'
 
@@ -12,15 +14,18 @@ function Public(props) {
     }, [])
 
     return (
-        <div>
-            <h1>Public</h1>
-            <h3>Welcome, {username}!</h3>
-            <IssueForm />
+        <div className="content">
+            <h1>Home</h1>
+            <h3>Hi, {username[0].toUpperCase() + username.substring(1)}!</h3>
+            <IssueForm type="issue" />
             <div className="issueList">
                 {[...allIssues].reverse().map(issue => {
-                    console.log(issue)
-                    return <Issue key={issue._id} {...issue} />
-                    })}
+                    return (
+                        <Link to={`/${issue._id}`} key={issue._id} className="issueLink">
+                            <Issue {...issue} />
+                        </Link>
+                    )
+                })}
             </div>
         </div>
     );

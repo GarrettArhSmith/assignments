@@ -1,24 +1,18 @@
 import React from 'react';
 import Votes from './Votes'
 
-function Issue(props) {
-    const { title, description, _id, user: { username }, upVoters, downVoters } = props
-
-    function handleClick(e) {
-        e.preventDefault()
-        e.stopPropagation()
-    }
+function Comment(props) {
+    const { user: { username }, comment, _id, upVoters, downVoters } = props
 
     return (
         <div className="issue">
             <div className="issueContent">
-                <h3>{title}</h3>
                 <p className="author">Posted by {username}</p>
-                <p className="description">{description}</p>
+                <p className="description">{comment}</p>
             </div>
             <Votes _id={_id} votes={{upVotes: upVoters, downVotes: downVoters}} />
         </div>
     );
 }
 
-export default Issue;
+export default Comment;

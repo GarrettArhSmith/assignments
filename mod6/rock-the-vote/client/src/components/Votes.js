@@ -38,6 +38,7 @@ function Vote(props) {
 
     function handleVote(e) {
         const selected = e.currentTarget.classList[0]
+        e.preventDefault()
 
         if(upVoters?.includes(user._id)) {
             selected === "up" ?
@@ -60,7 +61,7 @@ function Vote(props) {
             <button 
                 className="up vote" 
                 onClick={(handleVote)}
-                style={{color: upVoters?.includes(user._id) ? "forestgreen" : "gray"}}
+                style={{color: upVoters?.includes(user._id) ? "forestgreen" : "#878a8c"}}
             ><ImArrowUp /></button>
 
             <p>{(upVoters ? upVoters.length : 0) - (downVoters ? downVoters.length : 0)}</p>
@@ -68,7 +69,7 @@ function Vote(props) {
             <button 
                 className="down vote" 
                 onClick={handleVote}
-                style={{color: downVoters?.includes(user._id) ? "maroon" : "gray"}}
+                style={{color: downVoters?.includes(user._id) ? "maroon" : "#878a8c"}}
             ><ImArrowDown /></button>
         </div>
     );

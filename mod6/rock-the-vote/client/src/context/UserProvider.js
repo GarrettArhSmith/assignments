@@ -18,6 +18,7 @@ function UserProvider(props) {
     }
     const [userState, setUserState] = useState(initUserState)
     const [allIssues, setAllIssues] = useState([])
+    const [issueComments, setIssueComments] = useState([])
 
     function signup(credentials) {
         axios.post("/auth/signup", credentials)
@@ -67,6 +68,18 @@ function UserProvider(props) {
             .catch(err => console.log(err.response.data.errMsg))
     }
 
+    function getIssueComments(issueId) {
+        userAxios.get(`/api/comment/${issueId}`)
+            .then(res => setIssueComments(res.data))
+            .catch(err => console.log(err.response.data.errMsg))
+    }
+
+    function addComment(newComment, issueId) {
+        userAxios.post(`/api/comment/${issueId}`, newComment)
+            .then(res => setIssueComments(prev => [...prev, res.data]))
+            .catch(err => console.log(err.response.data.errMsg))
+    }
+
     function addVote(issueId, type) {
         userAxios.put(`/api/vote/${type}/add/${issueId}`)
             .then(res => console.log())
@@ -88,6 +101,9 @@ function UserProvider(props) {
                 getAllIssues,
                 getUserIssues,
                 allIssues,
+                addComment,
+                getIssueComments,
+                issueComments,
                 vote: { addVote, deleteVote }
             }}
         >

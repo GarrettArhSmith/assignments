@@ -2,12 +2,10 @@ import React, { useState, useContext } from 'react';
 import { UserContext } from '../context/UserProvider'
 
 function IssueForm(props) {
-    const { addIssue } = useContext(UserContext)
+    const { _id, type } = props
+    const { addIssue, addComment } = useContext(UserContext)
 
-    const initInputs = {
-        title: "",
-        description: ""
-    }
+    const initInputs = type === "issue" ? { title: "", description: "" } : { comment: "" }
     const [inputs, setInputs] = useState(initInputs)
 
     function handleChange(e) {
@@ -17,26 +15,36 @@ function IssueForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        addIssue(inputs)
+        type === "issue" ?
+        addIssue(inputs) :
+        addComment(inputs, _id)
     }
 
     return (
-        <form type="submit" onSubmit={handleSubmit}>
-            <label htmlFor="title">Title</label>
-            <input 
+        <form type="submit" onSubmit={handleSubmit} className="issueForm">
+            {type === "issue" && (
+                <>
+                    <label htmlFor="title">Title</label>
+                    <input 
+                        type="text"
+                        name="title"
+                        value={inputs.title}
+                        onChange={handleChange}
+                        className="titleInput"
+                        placeholder="Title..."
+                    />
+                </>
+            )}
+            <label htmlFor="text">{type === "issue" ? "Description" : "Comment"}</label>
+            <textarea 
                 type="text"
-                name="title"
-                value={inputs.title}
+                name={type === "issue" ? "description" : "comment"}
+                value={type === "issue" ? inputs.description : inputs.comment}
                 onChange={handleChange}
+                className="formTextArea"
+                placeholder={type === "issue" ? "Description..." : "Comment..."}
             />
-            <label htmlFor="description">Description</label>
-            <input 
-                type="text"
-                name="description"
-                value={inputs.description}
-                onChange={handleChange}
-            />
-            <button>Create Issue</button>
+            <button>POST</button>
         </form>
     );
 }

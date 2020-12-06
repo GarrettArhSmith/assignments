@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom'
-
 import axios from 'axios'
+import { UserContext } from '../context/UserProvider';
+
 import Issue from './Issue';
-import CommentForm from './CommentForm'
+import IssueForm from './IssueForm'
+import Comment from './Comment'
 
 const userAxios = axios.create()
 userAxios.interceptors.request.use(config => {
@@ -14,6 +16,8 @@ userAxios.interceptors.request.use(config => {
 
 function IssuePage(props) {
     const { issueId } = useParams()
+
+    const { issueComments, getIssueComments } = useContext(UserContext)
     const [issue, setIssue] = useState(false)
 
     function getOneIssue() {
@@ -24,12 +28,18 @@ function IssuePage(props) {
     
     useEffect(() => {
         getOneIssue()
+        getIssueComments(issueId)
     }, [])
 
     return (
-        <div>
+        <div className="content">
             {issue && <Issue {...issue} />}
-            <CommentForm />
+            <IssueForm type="comment" _id={issueId} />
+            <div className="issueList">
+                {[...issueComments]?.reverse()?.map(comment => (
+                    <Comment key={comment._id} {...comment} />
+                ))}
+            </div>
         </div>
     );
 }

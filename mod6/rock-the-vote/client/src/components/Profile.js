@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { UserContext } from '../context/UserProvider'
+import { Link } from 'react-router-dom'
+
 import Issue from './Issue'
 
 function Profile(props) {
@@ -11,9 +13,15 @@ function Profile(props) {
     }, [])
 
     return (
-        <div>
-            <h1>{username}'s Profile</h1>
-            {userIssues.map(issue => <Issue key={issue._id} {...issue} />)}
+        <div className="content">
+            <h1>{username[0].toUpperCase() + username.substring(1)}'s Profile</h1>
+            <div className="issueList">
+                {[...userIssues].reverse().map(issue => (
+                    <Link to={`/${issue._id}`} key={issue._id} className="issueLink">
+                            <Issue {...issue} />
+                    </Link>
+                ))}
+            </div>
         </div>
     );
 }
