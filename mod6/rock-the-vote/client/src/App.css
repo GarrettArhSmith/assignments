@@ -40,8 +40,31 @@ button:hover {
     transform: scale(1.1);
 }
 
+.logout {
+    background-color: rgb(255, 112, 60);
+}
+.logout:hover {
+    background-color: rgb(255, 152, 115);
+}
+
 .content {
     padding: 25px;
+}
+
+.authForm {
+    display: flex;
+    flex-direction: column;
+}
+.authForm > input {
+    height: 30px;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+.authToggle { transition: 0.2s ease; }
+.authToggle:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+    color: #555555;
 }
 
 .issueForm {

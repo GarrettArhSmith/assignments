@@ -44,6 +44,13 @@ function UserProvider(props) {
             .catch(err => console.log(err.response.data.errMsg))
     }
 
+    function logout() {
+        localStorage.removeItem("token")
+        localStorage.removeItem("user")
+        setUserState(initUserState)
+        window.location.reload();
+    }
+
     function getAllIssues() {
         userAxios.get("/api/issue")
             .then(res => setAllIssues(res.data))
@@ -69,7 +76,7 @@ function UserProvider(props) {
     }
 
     function getIssueComments(issueId) {
-        userAxios.get(`/api/comment/${issueId}`)
+        userAxios.get(`/api/comment/issue/${issueId}`)
             .then(res => setIssueComments(res.data))
             .catch(err => console.log(err.response.data.errMsg))
     }
@@ -80,13 +87,13 @@ function UserProvider(props) {
             .catch(err => console.log(err.response.data.errMsg))
     }
 
-    function addVote(issueId, type) {
-        userAxios.put(`/api/vote/${type}/add/${issueId}`)
+    function addVote(issueId, postType, direction) {
+        userAxios.put(`/api/vote/${direction}/add/${postType}/${issueId}`)
             .then(res => console.log())
             .catch(err => console.log(err.response.data.errMsg))
     }
-    function deleteVote(issueId, type) {
-        userAxios.put(`/api/vote/${type}/delete/${issueId}`)
+    function deleteVote(issueId, postType, direction) {
+        userAxios.put(`/api/vote/${direction}/delete/${postType}/${issueId}`)
             .then(res => console.log())
             .catch(err => console.log(err.response.data.errMsg))
     }
@@ -97,6 +104,7 @@ function UserProvider(props) {
                 ...userState,
                 signup,
                 login,
+                logout,
                 addIssue,
                 getAllIssues,
                 getUserIssues,

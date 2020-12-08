@@ -9,11 +9,11 @@ import IssuePage from './components/IssuePage'
 import { UserContext } from './context/UserProvider'
 
 function App() {
-    const { token } = useContext(UserContext)
+    const { token, logout, user } = useContext(UserContext)
 
     return (
         <div className="App">
-            <Nav />
+            <Nav logout={logout} {...user} />
             <Switch>
                 <Route exact path="/">
                     {token ? <Public /> : <Auth />}

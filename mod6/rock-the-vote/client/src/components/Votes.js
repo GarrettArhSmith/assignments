@@ -12,7 +12,7 @@ userAxios.interceptors.request.use(config => {
 
 function Vote(props) {
     const { vote: { addVote, deleteVote }, user } = useContext(UserContext)
-    const { _id, votes:{ upVotes, downVotes } } = props
+    const { _id, votes:{ upVotes, downVotes }, postType } = props
 
     const [upVoters, setUpVoters] = useState(upVotes)
     const [downVoters, setDownVoters] = useState(downVotes)
@@ -26,10 +26,9 @@ function Vote(props) {
     //         .catch(err => console.log(err.response.data.errMsg))
     // }
 
-    function getOneIssue(issueId) {
-        userAxios.get(`/api/issue/${issueId}`)
+    function getOnePost(issueId) {
+        userAxios.get(`/api/${postType}/${issueId}`)
             .then(res => {
-                console.log("ran")
                 setUpVoters(res.data.upVoters)
                 setDownVoters(res.data.downVoters)
             })
@@ -42,18 +41,18 @@ function Vote(props) {
 
         if(upVoters?.includes(user._id)) {
             selected === "up" ?
-            deleteVote(_id, selected) :
-            addVote(_id, selected)
+            deleteVote(_id, postType, selected) :
+            addVote(_id, postType, selected)
         }
         else if(downVoters?.includes(user._id)) {
             selected === "down" ?
-            deleteVote(_id, selected) :
-            addVote(_id, selected)
+            deleteVote(_id, postType, selected) :
+            addVote(_id, postType, selected)
         }
         else {
-            addVote(_id, selected)
+            addVote(_id, postType, selected)
         }
-        getOneIssue(_id)
+        getOnePost(_id)
     }
 
     return (

@@ -16,7 +16,7 @@ function Issue(props) {
                 <p className="author">Posted by {username}</p>
                 <p className="description">{description}</p>
             </div>
-            <Votes _id={_id} votes={{upVotes: upVoters, downVotes: downVoters}} />
+            <Votes _id={_id} votes={{upVotes: upVoters, downVotes: downVoters}} postType="issue" />
         </div>
     );
 }

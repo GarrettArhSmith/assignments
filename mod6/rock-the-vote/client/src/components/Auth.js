@@ -41,7 +41,14 @@ function Auth(props) {
                 inputs={inputs}
                 btnText="Login"
             />}
-            <p onClick={() => setToggle(prev => !prev)}>{toggle ? "Already a member?" : "Not a member?"}</p>
+            <p 
+                className="authToggle"
+                onClick={() => {
+                    setToggle(prev => !prev)
+                }}
+            >
+                {toggle ? "Already a member?" : "Not a member?"}
+            </p>
         </div>
     );
 }

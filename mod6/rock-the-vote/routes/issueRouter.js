@@ -46,11 +46,13 @@ issueRouter.post("/", (req, res, next) => {
     req.body.user = req.user._id
     const newIssue = new Issue(req.body)
     newIssue.save((err, issue) => {
-        if(err) {
-            res.status(500)
-            return next(err)
-        }
-        return res.status(201).send(issue)
+        issue.populate('user', (err, issue) => {
+            if(err) {
+                res.status(500)
+                return next(err)
+            }
+            return res.status(201).send(issue)
+        })
     })
 })
 

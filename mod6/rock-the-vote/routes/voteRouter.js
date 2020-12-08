@@ -1,6 +1,7 @@
 const express = require('express')
 const voteRouter = express.Router()
 const Issue = require('../models/issue')
+const Comment = require('../models/comment')
 
 
 //CHECK IF VOTED
@@ -22,8 +23,8 @@ const Issue = require('../models/issue')
 //     })
 // })
 
-//ADD UPVOTE
-voteRouter.put("/up/add/:issueId", (req, res, next) => {
+//ADD UPVOTE TO ISSUE
+voteRouter.put("/up/add/issue/:issueId", (req, res, next) => {
     Issue.findOneAndUpdate(
         { _id: req.params.issueId },
         { $addToSet: { upVoters: req.user._id },
@@ -39,8 +40,8 @@ voteRouter.put("/up/add/:issueId", (req, res, next) => {
     )
 })
 
-//ADD DOWNVOTE
-voteRouter.put("/down/add/:issueId", (req, res, next) => {
+//ADD DOWNVOTE TO ISSUE
+voteRouter.put("/down/add/issue/:issueId", (req, res, next) => {
     Issue.findOneAndUpdate(
         { _id: req.params.issueId },
         { $addToSet: { downVoters: req.user._id },
@@ -56,8 +57,8 @@ voteRouter.put("/down/add/:issueId", (req, res, next) => {
     )
 })
 
-//DELETE UPVOTE
-voteRouter.put("/up/delete/:issueId", (req, res, next) => {
+//DELETE UPVOTE FROM ISSUE
+voteRouter.put("/up/delete/issue/:issueId", (req, res, next) => {
     Issue.findOneAndUpdate(
         { _id: req.params.issueId },
         { $pull: { upVoters: req.user._id } },
@@ -72,8 +73,8 @@ voteRouter.put("/up/delete/:issueId", (req, res, next) => {
     )
 })
 
-//DELETE DOWNVOTE
-voteRouter.put("/down/delete/:issueId", (req, res, next) => {
+//DELETE DOWNVOTE FROM ISSUE
+voteRouter.put("/down/delete/issue/:issueId", (req, res, next) => {
     Issue.findOneAndUpdate(
         { _id: req.params.issueId },
         { $pull: { downVoters: req.user._id } },
@@ -84,6 +85,74 @@ voteRouter.put("/down/delete/:issueId", (req, res, next) => {
                 return next(err)
             }
             return res.status(201).send(issue)
+        }
+    )
+})
+
+///////////////////////////////////////////
+
+//ADD UPVOTE TO COMMENT
+voteRouter.put("/up/add/comment/:commentId", (req, res, next) => {
+    Comment.findOneAndUpdate(
+        { _id: req.params.commentId },
+        { $addToSet: { upVoters: req.user._id },
+          $pull: { downVoters: req.user._id } },
+        { new: true },
+        (err, upVotedComment) => {
+            if(err) {
+                res.status(500)
+                return next(err)
+            }
+            return res.status(201).send(upVotedComment)
+        }
+    )
+})
+
+//ADD DOWNVOTE TO COMMENT
+voteRouter.put("/down/add/comment/:commentId", (req, res, next) => {
+    Comment.findOneAndUpdate(
+        { _id: req.params.commentId },
+        { $addToSet: { downVoters: req.user._id },
+          $pull: { upVoters: req.user._id } },
+        { new: true },
+        (err, downVotedComment) => {
+            if(err) {
+                res.status(500)
+                return next(err)
+            }
+            return res.status(201).send(downVotedComment)
+        }
+    )
+})
+
+//DELETE UPVOTE FROM COMMENT
+voteRouter.put("/up/delete/comment/:commentId", (req, res, next) => {
+    Comment.findOneAndUpdate(
+        { _id: req.params.commentId },
+        { $pull: { upVoters: req.user._id } },
+        { new: true },
+        (err, comment) => {
+            if(err) {
+                res.status(500)
+                return next(err)
+            }
+            return res.status(201).send(comment)
+        }
+    )
+})
+
+//DELETE DOWNVOTE FROM COMMENT
+voteRouter.put("/down/delete/comment/:commentId", (req, res, next) => {
+    Comment.findOneAndUpdate(
+        { _id: req.params.commentId },
+        { $pull: { downVoters: req.user._id } },
+        { new: true },
+        (err, comment) => {
+            if(err) {
+                res.status(500)
+                return next(err)
+            }
+            return res.status(201).send(comment)
         }
     )
 })

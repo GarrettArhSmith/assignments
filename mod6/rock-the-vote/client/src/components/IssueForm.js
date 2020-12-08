@@ -1,3 +1,4 @@
+import { set } from 'mongoose';
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../context/UserProvider'
 
@@ -18,6 +19,7 @@ function IssueForm(props) {
         type === "issue" ?
         addIssue(inputs) :
         addComment(inputs, _id)
+        setInputs(initInputs)
     }
 
     return (

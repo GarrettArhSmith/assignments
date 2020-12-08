@@ -3,7 +3,7 @@ const commentRouter = express.Router()
 const Comment = require('../models/comment')
 
 //GET ALL FROM ISSUE
-commentRouter.get("/:issueId", (req, res, next) => {
+commentRouter.get("/issue/:issueId", (req, res, next) => {
     Comment.find({ issue: req.params.issueId })
         .populate("user")
         .exec((err, comments) => {
@@ -29,19 +29,33 @@ commentRouter.get("/user", (req, res, next) => {
     )
 })
 
+//GET ONE
+commentRouter.get("/:commentId", (req, res, next) => {
+    Comment.findOne({ _id: req.params.commentId })
+        .populate("user")
+        .exec((err, comment) => {
+            if(err) {
+                res.status(500)
+                return next(err)
+            }
+            console.log(comment)
+            return res.status(200).send(comment)
+        })
+})
+
 //ADD NEW COMMENT
 commentRouter.post("/:issueId", (req, res, next) => {
     req.body.user = req.user._id
-    console.log(req.params.issueId)
     req.body.issue = req.params.issueId
-    console.log(req.body)
     const newComment = new Comment(req.body)
     newComment.save((err, comment) => {
-        if(err) {
-            res.status(500)
-            return next(err)
-        }
-        return res.status(201).send(comment)
+        comment.populate('user', (err, comment) => {
+            if(err) {
+                res.status(500)
+                return next(err)
+            }
+            return res.status(201).send(comment)
+        })
     })
 })
 
