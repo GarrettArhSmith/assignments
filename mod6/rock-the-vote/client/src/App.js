@@ -13,7 +13,7 @@ function App() {
 
     return (
         <div className="App">
-            <Nav logout={logout} {...user} />
+            <Nav logout={logout} token={token} {...user} />
             <Switch>
                 <Route exact path="/">
                     {token ? <Public /> : <Auth />}

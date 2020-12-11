@@ -14,7 +14,8 @@ function UserProvider(props) {
     const initUserState = {
         user: JSON.parse(localStorage.getItem("user")) || {},
         token: localStorage.getItem("token") || "",
-        userIssues: []
+        userIssues: [],
+        errMsg: ""
     }
     const [userState, setUserState] = useState(initUserState)
     const [allIssues, setAllIssues] = useState([])
@@ -28,7 +29,7 @@ function UserProvider(props) {
                 localStorage.setItem("user", JSON.stringify(user))
                 setUserState(prev => ({...prev, token, user}))
             })
-            .catch(err => console.log(err.response.data.errMsg))
+            .catch(err => handleAuthErr(err.response.data.errMsg))
     }
 
     function login(credentials) {
@@ -41,7 +42,7 @@ function UserProvider(props) {
                 getUserIssues()
                 setUserState(prev => ({...prev, token, user}))
             })
-            .catch(err => console.log(err.response.data.errMsg))
+            .catch(err => handleAuthErr(err.response.data.errMsg))
     }
 
     function logout() {
@@ -49,6 +50,19 @@ function UserProvider(props) {
         localStorage.removeItem("user")
         setUserState(initUserState)
         window.location.reload();
+    }
+
+    function handleAuthErr(errMsg) {
+        let finalErrMsg
+        if(errMsg === "User validation failed: username: Path `username` is required., password: Path `password` is required.") {
+            finalErrMsg = "Missing username or password."
+        }
+        else finalErrMsg = errMsg
+        setUserState(prev => ({...prev, errMsg: finalErrMsg}))
+    }
+
+    function resetErrMsg() {
+        setUserState(prev => ({...prev, errMsg: ""}))
     }
 
     function getAllIssues() {
@@ -112,6 +126,7 @@ function UserProvider(props) {
                 addComment,
                 getIssueComments,
                 issueComments,
+                resetErrMsg,
                 vote: { addVote, deleteVote }
             }}
         >

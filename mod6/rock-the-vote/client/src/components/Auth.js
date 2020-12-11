@@ -3,7 +3,7 @@ import AuthForm from './AuthForm';
 import { UserContext } from '../context/UserProvider'
 
 function Auth(props) {
-    const { signup, login } = useContext(UserContext)
+    const { signup, login, errMsg, resetErrMsg } = useContext(UserContext)
 
     const initInputs = {
         username: "",
@@ -26,6 +26,11 @@ function Auth(props) {
         login(inputs)
     }
 
+    function handleToggle() {
+        setToggle(prev => !prev)
+        resetErrMsg()
+    }
+
     return (
         <div>
             {toggle ?
@@ -34,18 +39,18 @@ function Auth(props) {
                 handleSubmit={handleSignup}
                 inputs={inputs}
                 btnText="Sign Up"
+                errMsg={errMsg}
             /> :
             <AuthForm
                 handleChange={handleChange}
                 handleSubmit={handleLogin}
                 inputs={inputs}
                 btnText="Login"
+                errMsg={errMsg}
             />}
             <p 
                 className="authToggle"
-                onClick={() => {
-                    setToggle(prev => !prev)
-                }}
+                onClick={handleToggle}
             >
                 {toggle ? "Already a member?" : "Not a member?"}
             </p>

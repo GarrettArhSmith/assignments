@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function AuthForm(props) {
-    const { inputs, handleChange, handleSubmit, btnText } = props
+    const { inputs, handleChange, handleSubmit, btnText, errMsg } = props
 
     return (
         <div className="content">
@@ -21,6 +21,7 @@ function AuthForm(props) {
                     value={inputs.password}
                     onChange={handleChange}
                 />
+                <p style={{color: "red", minHeight: 18, marginTop: 0}}>{errMsg}</p>
                 <button type="submit">{btnText}</button>
             </form>
         </div>

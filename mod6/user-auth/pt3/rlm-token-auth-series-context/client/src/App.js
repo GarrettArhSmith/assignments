@@ -11,7 +11,7 @@ export default function App(){
 
   return (
     <div className="app">
-      <Navbar logout={logout}/>
+      {token && <Navbar logout={logout}/>}
       <Switch>
         <Route 
           exact path="/" 
@@ -19,11 +19,11 @@ export default function App(){
         />
         <Route 
           path="/profile"
-          render={() => <Profile />}
+          render={() => token ? <Profile /> : <Redirect to="/" />}
         />
         <Route 
           path="/public"
-          render={() => <Public />}
+          render={() => token ? <Public /> : <Redirect to="/" />}
         />
       </Switch>
     </div>

@@ -14,7 +14,8 @@ function UserProvider(props) {
     const initState = { 
         user: JSON.parse(localStorage.getItem("user")) || {}, 
         token: localStorage.getItem("token") || "", 
-        todos: [] 
+        todos: [],
+        errMsg: ""
     }
 
     const [userState, setUserState] = useState(initState)
@@ -27,7 +28,7 @@ function UserProvider(props) {
             localStorage.setItem("user", JSON.stringify(user))
             setUserState(prevUserState => ({ ...prevUserState, user, token }))
         })
-        .catch(err => console.log(err.response.data.errMsg))
+        .catch(err => handleAuthErr(err.response.data.errMsg))
     }
 
     function login(credentials) {
@@ -39,13 +40,21 @@ function UserProvider(props) {
             getUserTodos()
             setUserState(prevUserState => ({ ...prevUserState, user, token }))
         })
-        .catch(err => console.log(err.response.data.errMsg))
+        .catch(err => handleAuthErr(err.response.data.errMsg))
     }
 
     function logout() {
         localStorage.removeItem("token")
         localStorage.removeItem("user")
         setUserState({user: {}, token: "", todos: []})
+    }
+
+    function handleAuthErr(errMsg) {
+        setUserState(prev => ({...prev, errMsg}))
+    }
+
+    function resetAuthErr() {
+        setUserState(prev => ({...prev, errMsg: ""}))
     }
 
     function getUserTodos() {
@@ -69,7 +78,7 @@ function UserProvider(props) {
     }
 
     return (
-        <UserContext.Provider value={{...userState, signup, login, logout, addTodo}}>
+        <UserContext.Provider value={{...userState, signup, login, logout, addTodo, resetAuthErr}}>
             { props.children }
         </UserContext.Provider>
     )
