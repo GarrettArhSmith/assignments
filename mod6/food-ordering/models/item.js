@@ -10,13 +10,18 @@ const itemSchema = new Schema({
         type: String,
         required: true
     },
+    price: {
+        type: Number,
+        required: true
+    },
     menu: {
         type: Schema.Types.ObjectId,
         ref: "Menu",
         required: true
     },
-    price: {
-        type: Number,
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "Menu",
         required: true
     }
 })

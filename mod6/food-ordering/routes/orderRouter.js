@@ -1,7 +1,6 @@
 const express = require('express')
 const orderRouter = express.Router()
 const Order = require('../models/order')
-const Restaurant = require('../models/restaurant')
 
 const checkRestaurantRole = function(req, res, next) {
     if(!req.user.roles.includes("restaurant")) {

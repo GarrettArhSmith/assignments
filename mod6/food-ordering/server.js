@@ -21,8 +21,8 @@ mongoose.connect(
 
 app.use('/auth', require('./routes/authRouter'))
 app.use('/api', expressJwt({ secret: process.env.SECRET, algorithms: ['HS256'] }))
-// app.use('/api/user', require('./routes/userRouter'))
-// app.use('/api/item', require('./routes/itemRouter'))
+app.use('/api/user', require('./routes/userRouter'))
+app.use('/api/item', require('./routes/itemRouter'))
 app.use('/api/menu', require('./routes/menuRouter'))
 app.use('/api/restaurant', require('./routes/restaurantRouter'))
 app.use('/api/order', require('./routes/orderRouter'))
