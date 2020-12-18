@@ -37,8 +37,7 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-        required: true,
-        select: false
+        required: true
     },
     memberSince: {
         type: Date,

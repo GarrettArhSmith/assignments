@@ -49,7 +49,7 @@ function UserProvider(props) {
         localStorage.removeItem("token")
         localStorage.removeItem("user")
         setUserState(initUserState)
-        window.location.reload();
+        window.location.reload()
     }
 
     function handleAuthErr(errMsg) {
