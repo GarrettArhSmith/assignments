@@ -1,3 +1,29 @@
 .App {
   text-align: center;
 }
+
+nav {
+    display: grid;
+    grid-template-rows: repeat(auto, 1fr);
+    place-items: center;
+    height: 50vh;
+    transition: 1s ease;
+    background-color: whitesmoke;
+    border-bottom: 1px solid rgb(220, 220, 220);
+}
+nav > .icon {
+    font-size: 2em;
+    transition: 0.2s ease;
+}
+nav > .item {
+    transition: 0.2s ease;
+    text-decoration: none;
+    color: #0d101b;
+    font-weight: bold;
+    margin: 0;
+}
+nav > .item:hover {
+    color: #111;
+    transform: scale(1.1);
+    cursor: pointer;
+}
