@@ -9,6 +9,7 @@ import Profile from './components/Profile'
 import MyRestaurants from './components/MyRestaurants'
 import Admin from './components/Admin'
 import Cart from './components/Cart'
+import RestaurantPage from './components/RestaurantPage';
 
 
 function App() {
@@ -40,6 +41,9 @@ function App() {
                 </Route>
                 <Route path="/cart">
                     { token ? <Cart /> : <Auth /> }
+                </Route>
+                <Route path="/restaurant/:restaurantId">
+                    { token ? <RestaurantPage /> : <Auth /> }
                 </Route>
             </Switch>
         </div>

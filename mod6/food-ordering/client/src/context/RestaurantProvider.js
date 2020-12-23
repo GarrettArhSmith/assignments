@@ -11,7 +11,9 @@ userAxios.interceptors.request.use(config => {
 })
 
 function RestaurantProvider(props) {
+    const [myRestaurants, setMyRestaurants] = useState([])
     const [restaurants, setRestaurants] = useState([])
+    const [currentRestaurant, setCurrentRestaurant] = useState([])
 
     function getAllRestaurants() {
         userAxios.get("/api/restaurant")
@@ -21,11 +23,31 @@ function RestaurantProvider(props) {
             .catch(err => console.log(err.response.data.errMsg))
     }
 
+    function getUserRestaurants(userId) {
+        userAxios.get(`/api/restaurant/user/${userId}`)
+            .then(res => {
+                setMyRestaurants(res.data)
+            })
+            .catch(err => console.log(err.response.data.errMsg))
+    }
+
+    function getOneRestaurant(restaurantId) {
+        userAxios.get(`/api/restaurant/${restaurantId}`)
+            .then(res => {
+                setCurrentRestaurant(res.data)
+            })
+            .catch(err => console.log(err.response.data.errMsg))
+    }
+
     return (
         <RestaurantContext.Provider
             value={{
                 restaurants,
                 getAllRestaurants,
+                myRestaurants,
+                getUserRestaurants,
+                currentRestaurant,
+                getOneRestaurant
             }}
         >
             {props.children}

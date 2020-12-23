@@ -6,13 +6,19 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
 import UserProvider from './context/UserProvider'
 import RestaurantProvider from './context/RestaurantProvider'
+import MenuProvider from './context/MenuProvider'
+import ItemProvider from './context/ItemProvider'
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
         <UserProvider>
             <RestaurantProvider>
-                <App />
+                <MenuProvider>
+                    <ItemProvider>
+                        <App />
+                    </ItemProvider>
+                </MenuProvider>
             </RestaurantProvider>
         </UserProvider>
     </BrowserRouter>

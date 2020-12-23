@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 export const UserContext = React.createContext()
 
 function UserProvider(props) {
+    const history = useHistory();
     const initUserState = {
         user: JSON.parse(localStorage.getItem("user")) || {},
         token: localStorage.getItem("token") || "",
@@ -36,6 +38,7 @@ function UserProvider(props) {
         localStorage.removeItem("token")
         localStorage.removeItem("user")
         setUserState(initUserState)
+        history.push("/")
         window.location.reload()
     }
 
