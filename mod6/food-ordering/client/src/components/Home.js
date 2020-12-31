@@ -14,7 +14,10 @@ function Home(props) {
             <h1>Home</h1>
             <div className="list">
                 {restaurants?.map(restaurant => {
-                        return <Restaurant {...restaurant} key={restaurant._id} />
+                        return <Restaurant 
+                            {...restaurant} 
+                            key={restaurant._id} 
+                        />
                     })}
             </div>
         </div>

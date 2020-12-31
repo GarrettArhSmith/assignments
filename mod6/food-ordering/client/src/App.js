@@ -22,30 +22,32 @@ function App() {
                             userRoles={roles}
                         /> 
             }
-            <Switch>
-                <Route exact path="/">
-                    { token ? <Home /> : <Auth /> }
-                </Route>
-                <Route path="/profile">
-                    { token ? <Profile /> : <Auth /> }
-                </Route>
-                <Route path="/my-restaurants">
-                    { (token && roles.includes("restaurant")) ?
-                    <MyRestaurants /> : <Redirect to="/" />
-                    }
-                </Route>
-                <Route path="/admin">
-                    { (token && roles.includes("admin")) ?
-                    <Admin /> : <Redirect to="/" />
-                    }
-                </Route>
-                <Route path="/cart">
-                    { token ? <Cart /> : <Auth /> }
-                </Route>
-                <Route path="/restaurant/:restaurantId">
-                    { token ? <RestaurantPage /> : <Auth /> }
-                </Route>
-            </Switch>
+            <div style={{padding: "0 10% 10% 10%"}}>
+                <Switch>
+                    <Route exact path="/">
+                        { token ? <Home /> : <Auth /> }
+                    </Route>
+                    <Route path="/profile">
+                        { token ? <Profile /> : <Auth /> }
+                    </Route>
+                    <Route path="/my-restaurants">
+                        { (token && roles.includes("restaurant")) ?
+                        <MyRestaurants /> : <Redirect to="/" />
+                        }
+                    </Route>
+                    <Route path="/admin">
+                        { (token && roles.includes("admin")) ?
+                        <Admin /> : <Redirect to="/" />
+                        }
+                    </Route>
+                    <Route path="/cart">
+                        { token ? <Cart /> : <Auth /> }
+                    </Route>
+                    <Route path="/restaurant/:restaurantId">
+                        { token ? <RestaurantPage /> : <Auth /> }
+                    </Route>
+                </Switch>
+            </div>
         </div>
     );
 }

@@ -20,14 +20,14 @@ nav > .icon {
     font-size: 2em;
     transition: 0.2s ease;
 }
-nav > .item {
+nav > .navItem {
     transition: 0.2s ease;
     text-decoration: none;
     color: #0d101b;
     font-weight: bold;
     margin: 0;
 }
-nav > .item:hover {
+nav > .navItem:hover {
     color: #111;
     transform: scale(1.1);
     cursor: pointer;
@@ -35,23 +35,119 @@ nav > .item:hover {
 
 .list {
     display: grid;
-    grid-gap: 2%;
-    height: auto;
-    padding: 0 10% 10% 10%;
 }
+
+.item {
+    border-left: 6px solid yellowgreen;
+    border-bottom: 1px solid rgb(220, 220, 220);
+    padding: 5%;
+    background-color: #f8f8f8;
+    transition: 0.2s ease;
+}
+.item:last-of-type {
+    border-bottom: none;
+    margin-bottom: 10%;
+}
+.item > h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.item > p {
+    margin-bottom: 0;
+}
+.item:hover {
+    cursor: pointer;
+    border-left:  6px solid rgb(179, 226, 86);
+    transform: scale(1.03);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    background-color: #fcfcfc;
+}
+
+.btn {
+    background-color: rgb(233, 233, 233);
+    color: #0d101b;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    padding: 0 5px;
+    transition: 0.2s ease;
+    place-items: center;
+    height: 26px;
+}
+.btn:hover {
+    color: white;
+    cursor: pointer;
+}
+.btn:focus {
+    outline: none
+}
+.btn:disabled {
+    color: gray;
+    background-color: rgb(233, 233, 233);
+    cursor: default;
+}
+.btn:disabled:hover {
+    background-color: rgb(233, 233, 233);
+}
+
+.btnText {
+    margin: 0;
+    display: none;
+}
+.btnText:hover {
+    display: block;
+}
+
+.red:hover {
+    background-color: lightcoral;
+}
+.green:hover {
+    background-color:yellowgreen;
+}
+.orange:hover {
+    background-color: rgb(245, 176, 65)
+}
+.orange:active {
+    background-color: rgb(255, 186, 75);
+}
+
+form.item {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    grid-gap: 10px;
+    border-bottom: 1px solid rgb(220, 220, 220) !important;
+}
+form.item:hover {
+    cursor: default;
+}
+form.item > input {
+    grid-column: 1 / 5;
+    width: 100%;
+    height: 30px;
+}
+
+label {
+    justify-self: left;
+}
+
 .restaurant {
     text-align: left;
     padding: 5px 25px;
-    border: 1px solid rgb(220, 220, 220);
+    border-bottom: 6px solid rgb(220, 220, 220);
     background-color: #f8f8f8;
     border-radius: 5px;
     transition: 0.2s ease;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
 }
 .restaurant:hover {
     cursor: pointer;
     background-color: #f3f3f3;
     transform: scale(1.01);
-    border: 1px solid yellowgreen;
+    border-bottom: 6px solid yellowgreen;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .profileDetail {
@@ -63,7 +159,51 @@ nav > .item:hover {
 }
 
 .menu {
-    margin: 0 10%;
     text-align: left;
+}
+
+.menuHeader {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    grid-gap: 15px;
+    margin: 0 0 10px 0;
     border-bottom: 1px solid rgb(220, 220, 220);
+}
+
+.menuActions {
+    display: flex;
+    place-items: center;
+    grid-gap: 10px;
+    margin-left: auto;
+}
+
+.menuForm {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    grid-gap: 15px;
+    padding: 5%;
+}
+.menuForm > input {
+    font-size:1.17em;
+    font-weight: bold;
+}
+
+.confirmationModal {
+    border-top:  1px solid rgb(220, 220, 220);
+    padding: 1% 5% 5% 5%;
+}
+
+form.restaurant {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    margin-bottom: 3%;
+    padding: 25px;
+}
+form.restaurant > input {
+    grid-column: 1 / 5;
+    width: 100%;
+    height: 30px;
 }

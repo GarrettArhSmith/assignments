@@ -16,9 +16,20 @@ function ItemProvider(props) {
     function getItems(menuId) {
         userAxios.get(`/api/item/${menuId}`)
             .then(res => {
-                console.log(res.data)
                 setItems(res.data)
             })
+            .catch(err => console.log(err.response.data.errMsg))
+    }
+
+    function deleteItemsByMenu(menuId) {
+        userAxios.delete(`/api/item/menu/${menuId}`)
+            .then(res => setItems(prev => prev.filter(item => item.menu !== menuId)))
+            .catch(err => console.log(err.response.data.errMsg))
+    }
+
+    function deleteItemsByRestaurant(restaurantId) {
+        userAxios.delete(`/api/item/restaurant/${restaurantId}`)
+            .then(res => setItems(prev => prev.filter(item => item.restaurant !== restaurantId)))
             .catch(err => console.log(err.response.data.errMsg))
     }
 
@@ -26,7 +37,9 @@ function ItemProvider(props) {
         <ItemContext.Provider
             value={{
                 items,
-                getItems
+                getItems,
+                deleteItemsByMenu,
+                deleteItemsByRestaurant
             }}
         >
             {props.children}

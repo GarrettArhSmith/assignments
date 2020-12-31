@@ -22,12 +22,12 @@ function Navbar(props) {
                     !toggle ? 
                     <>
                         <FiMenu 
-                            className="icon item" 
+                            className="icon navItem" 
                             onClick={handleToggle}
                             style={{justifySelf:"left", marginLeft:"8%"}}
                         />
                         <Link to="/cart" 
-                            className="item" 
+                            className="navItem" 
                             style={{
                                 display: "flex",
                                 gridGap: 5,
@@ -41,20 +41,20 @@ function Navbar(props) {
                     <>
                         <Link to="/" 
                             onClick={handleToggle}
-                            className="item"
+                            className="navItem"
                         >
                             HOME
                         </Link>
-                        <Link to="/profile" onClick={handleToggle} className="item">PROFILE</Link>
+                        <Link to="/profile" onClick={handleToggle} className="navItem">PROFILE</Link>
                         { userRoles.includes("restaurant") &&
-                            <Link to="/my-restaurants" onClick={handleToggle} className="item">MANAGE</Link> 
+                            <Link to="/my-restaurants" onClick={handleToggle} className="navItem">MANAGE</Link> 
                         }
                         { userRoles.includes("admin") &&
-                            <Link to="/admin" onClick={handleToggle} className="item">ADMIN</Link>
+                            <Link to="/admin" onClick={handleToggle} className="navItem">ADMIN</Link>
                         }
                         <Link to="/cart" 
                             onClick={handleToggle}
-                            className="item" 
+                            className="navItem" 
                             style={{
                                 display: "flex",
                                 gridGap: 5
@@ -62,10 +62,10 @@ function Navbar(props) {
                         >
                             <FiShoppingCart style={{alignSelf:"center"}} /> MY CART
                         </Link>
-                        <p className="item" onClick={logout} style={{display: "flex", gridGap: 5}}>
+                        <p className="navItem" onClick={logout} style={{display: "flex", gridGap: 5}}>
                         <CgLogOut style={{alignSelf:"center"}} /> LOGOUT
                         </p>
-                        <FiArrowUp className="icon item" onClick={handleToggle} style={{color: "maroon"}} />
+                        <FiArrowUp className="icon navItem" onClick={handleToggle} style={{color: "maroon"}} />
                     </>
                 }
             </nav>

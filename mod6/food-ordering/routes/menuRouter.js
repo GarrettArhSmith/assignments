@@ -72,7 +72,7 @@ menuRouter.put("/:menuId", checkRole, (req, res, next) => {
     )
 })
 
-//DELETE MENU
+//DELETE ONE MENU
 menuRouter.delete("/:menuId", checkRole, (req, res, next) => {
     Menu.findOneAndDelete(
         {  _id: req.params.menuId, user: req.user._id },
@@ -83,11 +83,27 @@ menuRouter.delete("/:menuId", checkRole, (req, res, next) => {
             }
             if(!deletedMenu) {
                 res.status(403)
-                return next(new Error("You are not the owner of this restaurant!"))
+                return next(new Error("This menu does not exist or you are not the owner of this restaurant!"))
             }
-            return res.status(201).send(`Successfully deleted Menu: ${deletedMenu.title}`)
+            return res.status(201).send(deletedMenu)
         }
     )
+})
+
+//DELETE ALL MENUS BY RESTAURANT
+menuRouter.delete("/restaurant/:restaurantId", (req, res, next) => {
+    Menu.deleteMany({restaurant: req.params.restaurantId, user: req.user._id})
+        .exec((err, deletedMenus) => {
+            if(err) {
+                res.status(500)
+                return next(err)
+            }
+            if(!deletedMenus) {
+                res.status(403)
+                return next(new Error("This restaurant does not exist, or you are not the owner!"))
+            }
+            return res.status(201).send(deletedMenus)
+        })
 })
 
 module.exports = menuRouter

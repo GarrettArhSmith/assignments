@@ -39,6 +39,18 @@ function RestaurantProvider(props) {
             .catch(err => console.log(err.response.data.errMsg))
     }
 
+    function createRestaurant(newRestaurant) {
+        userAxios.post("/api/restaurant", newRestaurant)
+            .then(res => setMyRestaurants(prev => [...prev, res.data]))
+            .catch(err => console.log(err.response.data.errMsg))
+    }
+
+    function deleteRestaurant(restaurantId) {
+        userAxios.delete(`/api/restaurant/${restaurantId}`)
+            .then(res => setMyRestaurants(prev => prev.filter(restaurant => restaurant._id !== restaurantId)))
+            .catch(err => console.log(err.response.data.errMsg))
+    }
+
     return (
         <RestaurantContext.Provider
             value={{
@@ -47,7 +59,9 @@ function RestaurantProvider(props) {
                 myRestaurants,
                 getUserRestaurants,
                 currentRestaurant,
-                getOneRestaurant
+                getOneRestaurant,
+                createRestaurant,
+                deleteRestaurant
             }}
         >
             {props.children}

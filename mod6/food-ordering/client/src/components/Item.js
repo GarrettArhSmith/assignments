@@ -2,8 +2,8 @@ import React from 'react';
 
 function Item(props) {
     return (
-        <div>
-            <h3>{props.name} - ${props.price}</h3>
+        <div className="item">
+            <h4>{props.name} - ${props.price}</h4>
             <p>{props.description}</p>
         </div>
     );

@@ -39,6 +39,7 @@ restaurantRouter.get("/:restaurantId", (req, res, next) => {
 
 //GET ALL BY USER
 restaurantRouter.get("/user/:userId", (req, res, next) => {
+    console.log()
     Restaurant.find({ user: req.params.userId })
     .populate({ path: 'user', select: ['firstName', 'lastName'] })
     .exec((err, restaurant) => {
@@ -87,7 +88,8 @@ restaurantRouter.delete("/:restaurantId", checkRole, (req, res, next) => {
                 res.status(500)
                 return next(err)
             }
-            return res.status(201).send(`Successfully deleted Restaurant: ${deletedRestaurant.name}`)
+            deletedRestaurant
+            return res.status(201).send(`Successfully deleted Restaurant: `)
         }
     )
 })
