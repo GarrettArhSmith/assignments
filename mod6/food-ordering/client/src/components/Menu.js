@@ -22,11 +22,6 @@ function Menu(props) {
     const [toggle, setToggle] = useState(false)
     const [confirmToggle, setConfirmToggle] = useState(false)
 
-    const ConfirmModalStyle = {
-        position: "fixed",
-        zIndex: 1
-    }
-
     function getItems(menuId) {
         userAxios.get(`/api/item/${menuId}`)
             .then(res => {
@@ -55,13 +50,17 @@ function Menu(props) {
     }
 
     function handleDeleteMenu(_id) {
-        console.log("test")
         deleteItems(_id)
         deleteMenu(_id)
     }
 
     useEffect(() => {
         getItems(_id)
+        return () => {
+            setConfirmToggle(false)
+            setToggle(false)
+            setItems([])
+        }
     }, [])
 
     return (
@@ -76,9 +75,11 @@ function Menu(props) {
                 <div className="menuActions">
                     {owner === user._id && <>
                         <button className="orange btn" onClick={() => setToggle(prev => !prev)}>
-                            <RiAddLine style={{fontSize: "1.1em"}} /> <p className="btnText">NEW ITEM</p>
+                            <RiAddLine /> <p className="btnText">NEW ITEM</p>
                         </button>
-                        <RiDeleteBinLine className="red btn" onClick={toggleConfirmaitonModal} />
+                        <button className="red btn" onClick={toggleConfirmaitonModal}>
+                            <RiDeleteBinLine />
+                        </button>
                     </>}
                 </div>
             </div>

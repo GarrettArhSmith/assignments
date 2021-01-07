@@ -36,7 +36,7 @@ function Restaurant(props) {
             <div className="restaurant" style={{marginBottom: "3%"}}>
                 <h3 style={{gridColumn: "1 / 4"}}>{name}</h3>
                 <p style={{gridColumn: "1 / 4"}}>{description}</p>
-                <div style={{gridColumn: "4 / 5", gridRow: "1 / 2", justifySelf: "flex-end"}}>
+                <div className="actions">
                     {owner && <button 
                             className="red btn"
                             onClick={handleToggle}

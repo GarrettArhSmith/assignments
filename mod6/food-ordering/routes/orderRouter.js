@@ -1,6 +1,7 @@
 const express = require('express')
 const orderRouter = express.Router()
 const Order = require('../models/order')
+const OrderItem = require('../models/orderItem')
 
 const checkRestaurantRole = function(req, res, next) {
     if(!req.user.roles.includes("restaurant")) {
@@ -20,12 +21,17 @@ const checkAdminRole = function(req, res, next) {
 //GET ALL BY RESTAURANT
 orderRouter.get("/restaurant/:restaurantId", checkRestaurantRole, (req, res, next) => {
     Order.find({ restaurant: req.params.restaurantId })
+        .populate('items')
         .populate({ path: 'user', select: ['firstName', 'lastName', 'phone', 'email'] })
         .populate('restaurant')
         .exec((err, orders) => {
             if(err) {
                 res.status(500)
                 return next(err)
+            }
+            if(orders.length <= 0) {
+                res.status(403)
+                return next(new Error("No orders found!"))
             }
             const restaurantOwner = JSON.stringify(orders[0].restaurant.user)
             const restaurantOwnerId = restaurantOwner.substring(1, restaurantOwner.length-1)
@@ -50,15 +56,12 @@ orderRouter.get("/", checkAdminRole, (req, res, next) => {
 
 //GET ONE ORDER
 orderRouter.get("/:orderId", (req, res, next) => {
-    Order.findOne({ _id: req.params.orderId }, 
-        (err, order) => {
+    Order.findOne({ _id: req.params.orderId })
+        .populate('items')
+        .exec((err, order) => {
             if(err) {
                 res.status(500)
                 return next(err)
-            }
-            if(!deletedOrder) {
-                res.status(403)
-                return next(new Error("That order does not exist, or it is not your order!"))
             }
             const orderUser = JSON.stringify(order.user)
             const orderUserId = orderUser.substring(1, orderUser.length-1)

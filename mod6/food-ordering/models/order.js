@@ -17,14 +17,15 @@ const orderSchema = new Schema({
         required: true
     },
     items: {
-        // type: [String],
-        type: [Schema.Types.ObjectId],
-        ref: "Item",
+        type: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Item"
+        }],
         validate: {
-            validator: function(array) {
-                return array.length > 0;
-            },
-            message: "You need to add at least 1 item to your order!"
+                    validator: function(array) {
+                        return array.length > 0;
+                    },
+                    message: "You need to add at least 1 item to your order!"
         },
         required: true
     }

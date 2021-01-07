@@ -8,6 +8,8 @@ import UserProvider from './context/UserProvider'
 import RestaurantProvider from './context/RestaurantProvider'
 import MenuProvider from './context/MenuProvider'
 import ItemProvider from './context/ItemProvider'
+import CartProvider from './context/CartProvider'
+import OrderProvider from './context/OrderProvider'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,7 +18,11 @@ ReactDOM.render(
             <RestaurantProvider>
                 <MenuProvider>
                     <ItemProvider>
-                        <App />
+                        <CartProvider>
+                            <OrderProvider>
+                                <App />
+                            </OrderProvider>
+                        </CartProvider>
                     </ItemProvider>
                 </MenuProvider>
             </RestaurantProvider>

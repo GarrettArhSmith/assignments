@@ -26,6 +26,7 @@ app.use('/api/item', require('./routes/itemRouter'))
 app.use('/api/menu', require('./routes/menuRouter'))
 app.use('/api/restaurant', require('./routes/restaurantRouter'))
 app.use('/api/order', require('./routes/orderRouter'))
+app.use('/api/order-item', require('./routes/orderItemRouter'))
 
 app.use((err, req, res, next) => {
     console.log(err)
