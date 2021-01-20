@@ -1,5 +1,4 @@
 const express = require('express')
-const { find } = require('../models/user')
 const userRouter = express.Router()
 const User = require('../models/user')
 
