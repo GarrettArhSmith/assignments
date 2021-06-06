@@ -11,8 +11,8 @@ function ContextProvider(props) {
 
     function handleSubmit(response) {
         !searched && setSearched(true)
-        setLoading(false)
         setWeatherData(response)
+        setLoading(false)
     }
 
     function changeUnit(val) {
@@ -27,8 +27,8 @@ function ContextProvider(props) {
         setSaved(prevSaved => [...prevSaved, data])
     }
     function delCity(data) {
-        setSaved(prevSaved => prevSaved.filter(city => (
-            city.city_name !== data.city_name
+        setSaved(prevSaved => prevSaved.filter(place => (
+            place.place_name !== data.place_name
         )))
     }
 

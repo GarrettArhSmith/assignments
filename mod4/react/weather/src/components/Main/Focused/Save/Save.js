@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import './Save.css'
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { Context } from '../../../../Context'
+import styled from 'styled-components'
 
 function Save(props) {
     const {saveCity, delCity, weatherData, saved} = useContext(Context)
     
     function isSaved() {
-        return saved.find(city => (
-            city.city_name === weatherData.city_name &&
-            city.state_code === weatherData.state_code
+        return saved.find(place => (
+            place.place_name === weatherData.place_name
         )) !== undefined
     }
 

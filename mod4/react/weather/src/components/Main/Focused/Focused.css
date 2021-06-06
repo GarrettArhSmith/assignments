@@ -1,5 +1,6 @@
 .focused {
     padding: 20px;
+    padding-right: 20rem;
     display: grid;
     grid-template-columns: 2fr 1fr;
     height: 40vh;
@@ -18,9 +19,9 @@
     grid-row: 1/2;
 }
 
-.focused img {
+.focusedImg {
     grid-column: 2/-1;
-    width: 200px;
+    width: 150px;
 }
 .tabs {
     list-style-type: none;
@@ -38,4 +39,7 @@
 }
 .tabContent {
     grid-column: 1/-1;
+}
+.focused .weatherDesc {
+    text-transform: capitalize;
 }

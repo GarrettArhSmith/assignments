@@ -1,13 +1,4 @@
-.saved {
-    padding: 20px;
-    width: 100%;
-    border-radius: 5px;
-    box-shadow: 0 0 3px rgba(0,0,0,0.1);
-    background-color: white;
-    transition: 0.1s ease;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-}
+
 .saved:hover {
     background-color: #4c8ecc;
     cursor: pointer;
@@ -15,9 +6,6 @@
     transform: scale(1.03);
 }
 
-.saved h2 {
-    font-size: 1.1em;
-} 
 .saved p {
     font-size: 0.7em;
 }
