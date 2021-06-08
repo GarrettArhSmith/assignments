@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components'
-import { Context } from '../../Context'
+// import { Context } from '../../Context'
 
 import SavedList from './Saved/SavedList'
 import Focused from './Focused/Focused'
@@ -24,7 +24,7 @@ const MainContent = styled.main`
 `
 
 function Main(props) {
-    const {saved} = useContext(Context)
+    // const {saved} = useContext(Context)
 
     return (
         <MainContent>

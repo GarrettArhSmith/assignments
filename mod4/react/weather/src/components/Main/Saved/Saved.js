@@ -8,8 +8,9 @@ const axios = require('axios').default;
 const SavedPlace = styled.li`
     margin: 0.5rem;
     padding: 0.5rem;
-    height: 7rem;
-    width: 9rem;
+    min-height: 7rem;
+    max-height: 7rem;
+    width: 10rem;
     border-radius: 5px;
     box-shadow: 0 0 8px rgba(0,0,0,0.2);
     background-color: white;
@@ -23,20 +24,52 @@ const SavedPlace = styled.li`
         color: whitesmoke;
         transform: scale(1.03);
     }
+    @media(min-width: 768px) {
+        min-height: 7rem;
+        max-height: 15rem;
+        width: 100%;
+    }
 `
 
 const Name = styled.h2`
     font-size: 1em;
     grid-column: 1 / 3;
+    @media(min-width: 768px) {
+        font-size: 1.1em;
+    }
+    @media(min-width: 1024px) {
+        font-size: 1.2em;
+    }
+    @media(min-width: 1200px) {
+        font-size: 1.3em;
+    }
 `
 const Temp = styled.h1`
     color: royalblue;
     font-size: 1.5em;
     grid-column: 1 / 2;
     grid-row: 2 / 3;
+    @media(min-width: 768px) {
+        font-size: 1.8em;
+    }
+    @media(min-width: 1024px) {
+        font-size: 2.1em;
+    }
+    @media(min-width: 1200px) {
+        font-size: 2.4em;
+    }
 `
 const Icon = styled.img`
     width: 50px;
+    @media(min-width: 768px) {
+        width: 65px;
+    }
+    @media(min-width: 1024px) {
+        width: 80px;
+    }
+    @media(min-width: 1200px) {
+        width: 95px;
+    }
 `
 const Weather = styled.span`
     grid-column: 2 / 3;
@@ -49,7 +82,6 @@ const weatherKey = process.env.REACT_APP_WEATHER_API_KEY
 function Saved(props) {
     const {weatherData, unit, convertToF} = useContext(Context)
     const [data, setData] = useState({})
-    console.log(`${props?.placeName.replace(/ /g, "")}`)
 
     useEffect(() => {
         axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${props.lat}&lon=${props.lon}&units=metric&appid=${weatherKey}`)
@@ -57,7 +89,6 @@ function Saved(props) {
             .catch(error => console.log(error))
     }, [weatherData])
 
-    console.log(data)
 
     return (
         <SavedPlace>

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import './Save.css'
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { Context } from '../../../../Context'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 
 function Save(props) {
     const {saveCity, delCity, weatherData, saved} = useContext(Context)

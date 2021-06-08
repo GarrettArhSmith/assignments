@@ -9,6 +9,9 @@ import FiveDay from './FiveDay/FiveDay'
 import TenDay from './TenDay/TenDay'
 
 const FocusedContent = styled.div`
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto auto;
     margin-top: 1rem;
     @media(min-width: 480px) {
     }
@@ -21,6 +24,50 @@ const FocusedContent = styled.div`
     }
     @media(min-width: 1200px) {
         padding-right: 10rem;
+    }
+`
+
+const Header = styled.span`
+    grid-column: 1 / 3;
+`
+
+const Title = styled.h2`
+    display: inline;
+`
+
+const Info = styled.span`
+    grid-row: 2 / 3;
+`
+
+const Temp = styled.h1`
+    color: royalblue;
+    font-size: 4em;
+    @media(min-width: 768px) {
+        font-size: 5em;
+    }
+`
+
+const Icon = styled.img`
+    grid-row: 2 / 3;
+`
+
+const Tabs = styled.ul`
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
+`
+
+const SLink = styled(Link)`
+    text-decoration: none;
+    color: #404040;
+    font-weight: bold;
+    transition: 0.2s ease;
+    &:hover {
+        transform: scale(1.1);
     }
 `
 
@@ -44,22 +91,24 @@ function Focused(props) {
         !searched ? <Placeholder>No Data</Placeholder> :
         loading ? <Placeholder>Loading...</Placeholder> :
         <FocusedContent>
-            <span>
-                <h2 style={{display:"inline"}}>{place_name}</h2>
+            <Header>
+                <Title>{place_name}</Title>
                 <Save />
-                <h1 className="temp">{temps.temp}°</h1>
+            </Header>
+            <Info>
+                <Temp>{temps.temp}°</Temp>
                 <h4 style={{color:"gray"}}>Feels like <span className="appTemp">{temps.feels_like}°</span></h4>
                 <h3 className="weatherDesc">{current?.weather[0].description}</h3>
-            </span>
-            <img 
+            </Info>
+            <Icon 
                 className="focusedImg"
                 src={`http://openweathermap.org/img/wn/${current?.weather[0].icon}@2x.png`} 
             />
-            <ul className="tabs">
-                <Link exact to="/"><li>Hourly</li></Link>
-                <Link to="5day"><li>5 Day</li></Link>
-                <Link to="10day"><li>10 Day</li></Link>
-            </ul>
+            <Tabs>
+                <SLink exact to="/"><li>Hourly</li></SLink>
+                <SLink to="5day"><li>5 Day</li></SLink>
+                <SLink to="10day"><li>10 Day</li></SLink>
+            </Tabs>
 
 
             <Switch>

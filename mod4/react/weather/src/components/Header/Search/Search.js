@@ -100,18 +100,20 @@ function Search(props) {
     }
 
     function handleSelectOption(value) {
-        setInput(value.place_name)
         setSelect(value)
-        // setDisplayOptions(false)
+        setInput(value.place_name)
+        handleSubmit(null, value)
     }
 
-    function handleSubmit(e) {
+    function handleSubmit(e, value) {
         e && e.preventDefault()
+        setInput(value ? value.place_name : select.place_name)
         setDisplayOptions(false)
         context.setLoading(true)
-        axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${select.center[1]}&lon=${select.center[0]}&units=metric&appid=${weatherKey}`)
+        axios.get(
+            `https://api.openweathermap.org/data/2.5/onecall?lat=${value ? value.center[1] : select.center[1]}&lon=${value ? value.center[0] : select.center[0]}&units=metric&appid=${weatherKey}`)
                 .then(res => {
-                    context.handleSubmit({...res.data, place_name: select.place_name})
+                    context.handleSubmit({...res.data, place_name: value ? value.place_name : select.place_name})
                 })
                 .catch(error => console.log(error))
     }

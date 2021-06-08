@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import './Hourly.css'
 import { Context } from '../../../../Context'
 import styled from 'styled-components'
