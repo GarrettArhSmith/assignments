@@ -72,6 +72,7 @@ const SLink = styled(Link)`
 `
 
 const Placeholder = styled.h1`
+    width: 50%;
     margin-top: 2rem;
     @media(min-width: 768px) {
         margin-top: 0;
@@ -106,8 +107,8 @@ function Focused(props) {
             />
             <Tabs>
                 <SLink exact to="/"><li>Hourly</li></SLink>
-                <SLink to="5day"><li>5 Day</li></SLink>
-                <SLink to="10day"><li>10 Day</li></SLink>
+                {/* <SLink to="5day"><li>5 Day</li></SLink>
+                <SLink to="10day"><li>10 Day</li></SLink> */}
             </Tabs>
 
 

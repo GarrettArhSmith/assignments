@@ -9,6 +9,8 @@ const SearchForm = styled.form`
     width: 100%;
     grid-column: 1 / 3;
     grid-row: 2 / 3;
+    display: grid;
+    grid-template-columns: 1fr auto;
     margin-top: 1rem;
     align-self: flex-end;
     @media(min-width: 480px) {
@@ -27,7 +29,6 @@ const SearchForm = styled.form`
 `
 
 const SearchBar = styled.input`
-    flex-grow: 2;
     border: none;
     background-color: transparent;
     font-size: 1.5em;

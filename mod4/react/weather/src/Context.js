@@ -23,13 +23,23 @@ function ContextProvider(props) {
         return Math.round((Number(temp) * (9/5) + 32) * 10) / 10
     }
 
+    function getSaved() {
+        const getSaved = JSON.parse(localStorage.getItem('saved'))
+        setSaved(getSaved)
+    }
+
     function saveCity(data) {
-        setSaved(prevSaved => [...prevSaved, data])
+        const getSaved = JSON.parse(localStorage.getItem('saved'))
+        localStorage.setItem('saved', JSON.stringify([...getSaved ? getSaved : [], data]))
+        const newSaved = JSON.parse(localStorage.getItem('saved')) 
+        setSaved(newSaved ? newSaved : [])
     }
     function delCity(data) {
-        setSaved(prevSaved => prevSaved.filter(place => (
-            place.place_name !== data.place_name
-        )))
+        const getSaved = JSON.parse(localStorage.getItem('saved'))
+        const filteredSaved = getSaved.filter(place => place.place_name !== data.place_name)
+        localStorage.setItem('saved', JSON.stringify(filteredSaved))
+        const newSaved = JSON.parse(localStorage.getItem('saved'))
+        setSaved(newSaved ? newSaved : [])
     }
 
     return (
@@ -44,7 +54,8 @@ function ContextProvider(props) {
             searched,
             saved,
             saveCity,
-            delCity
+            delCity,
+            getSaved
         }}>
             {props.children}
         </Context.Provider>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 // import { Switch, Route, Link } from 'react-router-dom'
 import './SavedList.css'
 import { Context } from '../../../Context'
@@ -28,6 +28,7 @@ const Title = styled.h3`
     margin: 0 0 0.5rem 0;
     white-space: nowrap;
     @media(min-width: 768px) {
+        margin: 0;
         ${'' /* display: ${props => props.toggled ? 'auto' : 'none'}; */}
     }
 `
@@ -69,18 +70,22 @@ const Icon = styled.span`
 `
 
 function SavedList(props) {
-    const {saved} = useContext(Context)
+    const {saved, getSaved} = useContext(Context)
     const [toggled, setToggled] = useState(true)
+
+    useEffect(() => {
+        getSaved()
+    }, [])
 
     return (
         <Container toggled={toggled}>
             <Header>
-                <Title toggled={toggled}>Saved Locations ({saved.length})</Title>
+                <Title toggled={toggled}>Saved Locations ({saved?.length ? saved?.length : "0"})</Title>
                 {!toggled && <Icon><AiOutlineDown onClick={() => setToggled(prev => !prev)} /></Icon>}
                 {toggled && <Icon><AiOutlineUp onClick={() => setToggled(prev => !prev)} /></Icon>}
             </Header>
             <SaveList toggled={toggled}>
-                {saved.map((place, i) => <Saved 
+                {saved?.map((place, i) => <Saved 
                         key={place.place_name + i} 
                         placeName={place.place_name} 
                         lat={place.lat}

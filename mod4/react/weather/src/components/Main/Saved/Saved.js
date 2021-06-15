@@ -49,6 +49,10 @@ const Temp = styled.h1`
     font-size: 1.5em;
     grid-column: 1 / 2;
     grid-row: 2 / 3;
+    transition: 0.2s ease;
+    ${SavedPlace}:hover & {
+        color: whitesmoke;
+    }
     @media(min-width: 768px) {
         font-size: 1.8em;
     }
@@ -92,14 +96,14 @@ function Saved(props) {
 
     return (
         <SavedPlace>
-            <Name>{props.placeName.substring(0, 26)}{props.placeName.length > 27 ? "..." : ""}</Name>
-            <Temp className="temp">{unit === "c" ? Math.round(10*data?.current?.temp)/10 : convertToF(data?.current?.temp)}°</Temp>
-            <Weather>
+            <Name>{props.placeName.substring(0, 32)}{props.placeName.length > 33 ? "..." : ""}</Name>
+            {data && <Temp className="temp">{unit === "c" ? Math.round(10*data?.current?.temp)/10 : convertToF(data?.current?.temp)}°</Temp>}
+            {data && <Weather>
                 <Icon 
                     src={`http://openweathermap.org/img/wn/${data?.current?.weather[0].icon}@2x.png`} 
                     alt="weather"
                 />
-            </Weather>
+            </Weather>}
         </SavedPlace>
     );
 }
